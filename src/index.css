@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --main-bg: #ffffff;
+  --second-bg: #fafafb;
+  --txt-color: #455560;
+  --txt-white: #fff;
+  --main-color: #349eff;
+  --second-color: #62b4ff;
+  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  --main-bg-light: #ffffff;
+  --second-bg-light: #fafafb;
+  --txt-color-light: #455560;
+  --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  --main-bg-dark: #2d2d2d;
+  --second-bg-dark: #202020;
+  --txt-color-dark: #bbbbbb;
+  --box-shadow-dark: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+
+  --main-color-blue: #349eff;
+  --second-color-blue: #62b4ff;
+
+  --main-color-red: #fb0b12;
+  --second-color-red: #ff4a6b;
+
+  --main-color-cyan: #10d4d2;
+  --second-color-cyan: #2ae9e6;
+
+  --main-color-green: #019707;
+  --second-color-green: #4caf50;
+
+  --main-color-orange: #d68102;
+  --second-color-orange: #fca11a;
+
+  --sidebar-width: 300px;
+  --border-radius: 15px;
+  --topnav-height: 110px;
+  --header-height: 80px;
+  --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Reset CSS */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  color: var(--txt-color);
+  background-color: var(--main-bg);
+}
+
+a {
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: unset;
+}
+
+/* Common */
+.heading span {
+  font-size: 2rem;
+  padding-top: 2rem;
+  text-transform: uppercase;
+}
+.heading p {
+  font-size: 1rem;
+}
+.xem-them {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.xem-them > a {
+  padding: 10px;
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+
+#admin .heading h4 {
+  text-align: center;
+}
+#admin .form-control:focus {
+  box-shadow: none;
+}
+svg {
+  vertical-align: baseline;
+}
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  border: none !important;
+}
+.ant-layout-sider {
+  min-height: 100vh;
+}
+#admin textarea {
+  resize: none;
+}
+.spinner-border.text-success {
+  left: -2%;
+  position: relative;
+  bottom: -10px;
+  color: #3f51b5 !important;
+}
+#error {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#admin .content i {
+  cursor: pointer;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(29, 28, 28, 0.527);
+  border-radius: 100%;
+  background-image: unset;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.nav-link {
+  cursor: pointer;
+}

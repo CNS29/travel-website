@@ -1,0 +1,10 @@
+#header {
+  height: var(--header-height);
+  overflow: hidden;
+  transition: 0.2s linear;
+}
+#header .header_logo > img {
+  height: calc(var(--header-height) - 30px);
+}
+@media (max-width: 768px) {
+}

@@ -1,0 +1,16 @@
+#ykien .ykien-list {
+  max-width: 700px;
+}
+
+#ykien .ant-avatar {
+  width: 70px !important;
+  height: 70px !important;
+}
+
+#ykien p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* number of lines to show */
+}

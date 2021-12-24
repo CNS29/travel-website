@@ -1,0 +1,45 @@
+#banner {
+  width: 100%;
+  position: relative;
+}
+
+#banner i {
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  font-size: 3rem;
+  color: white;
+  animation: loop 0.7s linear infinite alternate;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+#banner .banner_image img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  filter: brightness(90%);
+}
+
+#banner .swiper-button-next,
+#banner .swiper-button-prev {
+  color: var(--main-bg);
+  margin: 0 50px;
+}
+
+@keyframes loop {
+  100% {
+    bottom: 4%;
+  }
+}
+
+@media (max-width: 768px) {
+  #banner i {
+    font-size: 2rem;
+  }
+  #banner .swiper-button-next,
+  #banner .swiper-button-prev {
+    margin: 0 10px;
+    transform: scale(0.8);
+  }
+}
