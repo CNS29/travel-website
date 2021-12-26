@@ -17,19 +17,11 @@ function Dichvu() {
       dataIndex: "mota",
     },
     {
-      title: "icon",
-      dataIndex: "icon",
-    },
-    {
       title: "Tình trạng",
       dataIndex: "status",
     },
     {
-      title: "hiện trang chủ",
-      dataIndex: "loadhome",
-    },
-    {
-      title: "Action",
+      title: "Hành động",
       dataIndex: "action",
     },
   ];
@@ -60,16 +52,6 @@ function Dichvu() {
       actionResult();
     }, 500);
   };
-  const handleLoadhome = (e, id) => {
-    if (e === 1) {
-      dispatch(updatedichvu({ loadhome: 0, idsua: id }));
-    } else {
-      dispatch(updatedichvu({ loadhome: 1, idsua: id }));
-    }
-    setTimeout(() => {
-      actionResult();
-    }, 500);
-  };
 
   return (
     <div id="admin">
@@ -80,8 +62,8 @@ function Dichvu() {
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themdichvu`}>
-            <Button variant="outlined" color="secondary">
-              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm mới
+            <Button variant="outlined" color="primary">
+              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm dịch vụ
             </Button>
           </Link>
         </div>
@@ -96,29 +78,6 @@ function Dichvu() {
               key: index + 1,
               name: <span>{ok.name}</span>,
               mota: <span>{ok.mota}</span>,
-              icon: (
-                <span
-                  className={`${ok.icon} text-success`}
-                  style={{ fontSize: "1.5rem" }}
-                ></span>
-              ),
-              loadhome: (
-                <div className="action">
-                  {ok.loadhome === 1 ? (
-                    <span
-                      onClick={() => {
-                        handleLoadhome(ok.loadhome, ok.id);
-                      }}
-                    >
-                      <i className="fas fa-check text-success "></i>
-                    </span>
-                  ) : (
-                    <span onClick={() => handleLoadhome(ok.loadhome, ok.id)}>
-                      <i className="fas fa-times text-danger"></i>
-                    </span>
-                  )}
-                </div>
-              ),
               status: (
                 <div className="action">
                   {ok.status === 1 ? (
@@ -127,11 +86,11 @@ function Dichvu() {
                         handleStatus(ok.status, ok.id);
                       }}
                     >
-                      <i className="far fa-thumbs-up text-primary"></i>
+                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
                     </span>
                   ) : (
                     <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
+                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
                     </span>
                   )}
                 </div>
@@ -145,7 +104,7 @@ function Dichvu() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
-                    <i className="far fa-edit mr-4"></i>
+                    <button className="btn btn-warning">Sửa</button>
                   </Popconfirm>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -154,7 +113,7 @@ function Dichvu() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="far fa-trash-alt"></i>
+                    <button className="ms-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
                 </div>
               ),

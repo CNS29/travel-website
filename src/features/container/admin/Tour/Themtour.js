@@ -25,7 +25,7 @@ function getBase64(file) {
     reader.onerror = (error) => reject(error);
   });
 }
-function Themtour(props) {
+function Themtour() {
   const hangdlevitri = (e) => {
     setState({
       ...state,
@@ -91,9 +91,7 @@ function Themtour(props) {
   const actionResult = async () => {
     await dispatch(tourData());
   };
-  const actionloaitour = async () => {
-    await dispatch(loaitourData());
-  };
+
   useEffect(() => {
     async function setData() {
       if (id && tours) {
@@ -489,8 +487,15 @@ function Themtour(props) {
   const handleCancelModal = () => {
     setIsModalVisible(false);
   };
+
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>{id ? "Sửa tour" : "Thêm tour"}</h4>
         <div className="hr"></div>

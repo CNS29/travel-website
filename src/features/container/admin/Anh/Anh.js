@@ -5,16 +5,12 @@ import { anhData, updateanh } from "./anhSlice";
 function Anh() {
   const columns = [
     {
+      title: "Hình ảnh",
+      dataIndex: "link",
+    },
+    {
       title: "Tour",
       dataIndex: "name",
-    },
-    {
-      title: "Tình trạng",
-      dataIndex: "status",
-    },
-    {
-      title: "Ảnh",
-      dataIndex: "link",
     },
     {
       title: "Banner",
@@ -74,28 +70,11 @@ function Anh() {
                         handleBanner(ok.banner, ok.id);
                       }}
                     >
-                      <i className="fas fa-check text-success"></i>
+                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
                     </span>
                   ) : (
                     <span onClick={() => handleBanner(ok.banner, ok.id)}>
-                      <i className="fas fa-times text-danger"></i>
-                    </span>
-                  )}
-                </div>
-              ),
-              status: (
-                <div className="action">
-                  {ok.status === 1 ? (
-                    <span
-                      onClick={() => {
-                        handleStatus(ok.status, ok.id);
-                      }}
-                    >
-                      <i className="far fa-thumbs-up text-primary"></i>
-                    </span>
-                  ) : (
-                    <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
+                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
                     </span>
                   )}
                 </div>

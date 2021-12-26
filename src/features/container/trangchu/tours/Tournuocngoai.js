@@ -45,7 +45,7 @@ function Tournuocngoai() {
           ) : (
             tour.map((item) => (
               <div className="col-md-4" key={item.id}>
-                <Link to={`/tour/${item.id}`}>
+                <Link to={`/tours/${item.id}`}>
                   <div className="tour-favor_item">
                     <div className="tour_wrapper">
                       <img src={item.avatar} alt={item.tenanh} />

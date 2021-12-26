@@ -1,6 +1,6 @@
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Popconfirm, Spin, Table, Tooltip } from "antd";
 import { Button } from "@material-ui/core";
-import { Popconfirm, Popover, Spin, Table, Tooltip } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { hoadonData, removehoadon } from "./hoadonSlice";
@@ -24,7 +24,7 @@ function Hoadon() {
     },
 
     {
-      title: "Action",
+      title: "Hành dộng",
       dataIndex: "action",
     },
   ];
@@ -79,7 +79,7 @@ function Hoadon() {
               tour: <span>{ok.Tour.name}</span>,
               soluong: (
                 <Tooltip title={title(ok.nguoilon, ok.treem, ok.embe)}>
-                  <span>{soluong(ok.nguoilon, ok.treem, ok.embe)}</span>
+                  <Button>Chi tiết</Button>
                 </Tooltip>
               ),
               tien: (
@@ -104,7 +104,7 @@ function Hoadon() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="far fa-trash-alt"></i>
+                    <button className="ms-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
                 </div>
               ),

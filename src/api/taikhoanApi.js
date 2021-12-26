@@ -19,7 +19,7 @@ class TaikhoanApi {
     });
   };
   getOneAdmin = (params) => {
-    const url = `/userroles/${params}`;
+    const url = `/userrole/${params}`;
     return axiosClient.get(url).then((data) => {
       return data.data;
     });

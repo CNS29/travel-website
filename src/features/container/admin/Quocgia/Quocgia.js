@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Popconfirm, Spin, Table } from "antd";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { quocgiaData, removequocgia, updatequocgia } from "./quocgiaSlice";
+import { quocgiaData, removequocgia } from "./quocgiaSlice";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { diadiemData } from "../DiaDiem/diadiemSlice";
 function Quocgia() {
@@ -15,48 +15,11 @@ function Quocgia() {
       dataIndex: "name",
     },
     {
-      title: "Tình trạng",
-      dataIndex: "status",
-    },
-    {
       title: "Action",
       dataIndex: "action",
     },
   ];
-  var sts = 1;
-  const data = [
-    {
-      key: "1",
-      name: (
-        <div>
-          <Link>John Brown</Link>
-        </div>
-      ),
-      status: (
-        <div className="action">
-          {sts === 1 ? (
-            <Link>
-              <i className="far fa-thumbs-up "></i>
-            </Link>
-          ) : (
-            <Link>
-              <i className="far fa-thumbs-down "></i>
-            </Link>
-          )}
-        </div>
-      ),
-      action: (
-        <div className="action">
-          <Link>
-            <i className="far fa-edit mr-4"></i>
-          </Link>
-          <Link>
-            <i className="far fa-trash-alt"></i>
-          </Link>
-        </div>
-      ),
-    },
-  ];
+
   function onChange(pagination, filters, sorter, extra) {
     console.log("params", pagination, filters, sorter, extra);
   }
@@ -83,17 +46,7 @@ function Quocgia() {
     }, 500);
   };
   const hangdleEdit = (id) => {
-    history.replace(`${match.url}/suaquocgia/${id}`);
-  };
-  const handleStatus = (e, id) => {
-    if (e === 1) {
-      dispatch(updatequocgia({ status: 0, idsua: id }));
-    } else {
-      dispatch(updatequocgia({ status: 1, idsua: id }));
-    }
-    setTimeout(() => {
-      actionResult();
-    }, 500);
+    history.push(`${match.url}/suaquocgia/${id}`);
   };
   return (
     <div id="admin">
@@ -104,8 +57,8 @@ function Quocgia() {
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themquocgia`}>
-            <Button variant="outlined" color="secondary">
-              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm mới
+            <Button variant="outlined" color="primary">
+              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm quốc gia
             </Button>
           </Link>
         </div>
@@ -123,23 +76,6 @@ function Quocgia() {
                   {ok.name}
                 </Link>
               ),
-              status: (
-                <div className="action">
-                  {ok.status === 1 ? (
-                    <Link
-                      onClick={() => {
-                        handleStatus(ok.status, ok.id);
-                      }}
-                    >
-                      <i className="far fa-thumbs-up "></i>
-                    </Link>
-                  ) : (
-                    <Link onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
-                    </Link>
-                  )}
-                </div>
-              ),
               action: (
                 <div className="action">
                   <Popconfirm
@@ -150,7 +86,7 @@ function Quocgia() {
                     icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
                     <Link>
-                      <i className="far fa-edit mr-4"></i>
+                      <button className="btn btn-warning">Sửa</button>
                     </Link>
                   </Popconfirm>
                   <Popconfirm
@@ -161,7 +97,7 @@ function Quocgia() {
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
                     <Link>
-                      <i className="far fa-trash-alt"></i>
+                      <button className="ms-2 btn btn-danger">Xóa</button>
                     </Link>
                   </Popconfirm>
                 </div>
@@ -174,7 +110,5 @@ function Quocgia() {
     </div>
   );
 }
-
-Quocgia.propTypes = {};
 
 export default Quocgia;

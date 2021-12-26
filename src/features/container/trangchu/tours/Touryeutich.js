@@ -60,7 +60,7 @@ function Touryeuthich() {
                     <p className="my-2">
                       Giá: {item.gianguoilon.toLocaleString()}
                     </p>
-                    <Link to={`/tour/${item.id}`} className="btn btn-primary">
+                    <Link to={`/tours/${item.id}`} className="btn btn-primary">
                       Xem ngay
                     </Link>
                   </div>

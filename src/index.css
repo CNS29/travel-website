@@ -70,6 +70,15 @@ h6 {
 }
 
 /* Common */
+.admin_limit {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 .not-infor {
   text-align: center;
   padding: 150px 0;

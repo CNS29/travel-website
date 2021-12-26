@@ -17,8 +17,6 @@
   outline: none;
 }
 #detail-tour .MuiButtonBase-root {
-  right: 10%;
-  bottom: 10%;
 }
 #detail-tour .price {
   bottom: 8%;
@@ -45,8 +43,6 @@
     height: 240px;
   }
   #detail-tour .MuiButtonBase-root {
-    right: 5%;
-    bottom: 5%;
   }
   #detail-tour .price {
     bottom: 4%;

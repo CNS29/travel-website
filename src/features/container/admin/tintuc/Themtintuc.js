@@ -45,7 +45,7 @@ function Themtintuc(props) {
     actionResult();
     actiontintuctag();
     if (id) {
-      const suatag = await axios.get(`http://localhost:666/tintuctags/${id}`);
+      const suatag = await axios.get(`http://localhost:666/tintuctag/${id}`);
       const ss = suatag.data;
       const sua_tag = [];
       for (let i = 0; i < ss.data.length; i++) {
@@ -267,8 +267,14 @@ function Themtintuc(props) {
       img: e.target.files[0],
     });
   };
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>Thêm tin tức</h4>
         <div className="hr"></div>

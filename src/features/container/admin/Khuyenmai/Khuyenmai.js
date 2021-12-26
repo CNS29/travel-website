@@ -15,7 +15,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import tourkhuyenmaiApi from "../../../../api/tourKhuyenmaiApi";
-import tourloaitourApi from "../../../../api/tourLoaitour";
 import { tourData } from "../Tour/tourSlice";
 import {
   khuyenmaiData,
@@ -38,7 +37,7 @@ function Khuyenmai() {
       dataIndex: "status",
     },
     {
-      title: "Action",
+      title: "Hành động",
       dataIndex: "action",
     },
   ];
@@ -62,7 +61,7 @@ function Khuyenmai() {
     }, 500);
   };
   const hangdleEdit = (id) => {
-    history.replace(`${match.url}/suakhuyenmai/${id}`);
+    history.push(`${match.url}/suakhuyenmai/${id}`);
   };
   const handleStatus = (e, id) => {
     if (e === 1) {
@@ -75,63 +74,7 @@ function Khuyenmai() {
       actionTour();
     }, 500);
   };
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = async () => {
-    if (khuyenmaiId === undefined || tourId === undefined) {
-      message.warning("Bạn cần chọn đầy đủ thông tin");
-    } else {
-      if (khuyenmaiId === "0") {
-        for (let i = 0; i < tourId.length; i++) {
-          await tourkhuyenmaiApi.deletetourkhuyenmai(tourId[i]);
-        }
-        message.success("Huỷ khuyến mãi thành công!");
-      } else {
-        var data = [];
-        for (let i = 0; i < tourId.length; i++) {
-          if (tourId[i] !== 0) {
-            await tourkhuyenmaiApi.deletetourkhuyenmai(tourId[i]);
-            data.push({ khuyenmaiId: khuyenmaiId, tourId: tourId[i] });
-          }
-        }
-        await tourkhuyenmaiApi.posttourkhuyenmai(data);
-      }
-      setTimeout(() => {
-        actionTour();
-      }, 500);
-      setIsModalVisible(false);
-    }
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-  const [tourId, setTourId] = useState();
-  const onChangeCheckbox = (checkedValues) => {
-    setTourId(checkedValues);
-  };
-  const [khuyenmaiId, setKhuyenmaId] = useState();
-
-  const onChangeRadio = (e) => {
-    setKhuyenmaId(e.target.value);
-  };
-  const checkAll = () => {
-    const check = document.getElementById("all");
-    if (check.checked) {
-      var id = [0];
-      for (let i = 0; i < tours.length; i++) {
-        id.push(tours[i].id);
-      }
-      setTourId(id);
-    } else {
-      setTourId([]);
-    }
-  };
-  const tours = useSelector((state) => state.tour.tour.data);
   return (
     <div id="admin">
       <div className="heading">
@@ -140,17 +83,9 @@ function Khuyenmai() {
       </div>
       <div className="content">
         <div className="add">
-          <Button
-            variant="outlined"
-            color="primary"
-            className="mr-2"
-            onClick={showModal}
-          >
-            <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm khuyến mãi
-          </Button>
           <Link to={`${match.url}/themkhuyenmai`}>
-            <Button variant="outlined" color="secondary">
-              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm mới
+            <Button variant="outlined" color="primary">
+              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm khuyến mãi
             </Button>
           </Link>
         </div>
@@ -174,11 +109,11 @@ function Khuyenmai() {
                         handleStatus(ok.status, ok.id);
                       }}
                     >
-                      <i className="far fa-thumbs-up text-primary"></i>
+                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
                     </span>
                   ) : (
                     <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
+                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
                     </span>
                   )}
                 </div>
@@ -192,7 +127,7 @@ function Khuyenmai() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
-                    <i className="far fa-edit mr-4"></i>
+                    <button className="btn btn-warning">Sửa</button>
                   </Popconfirm>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -201,66 +136,13 @@ function Khuyenmai() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="far fa-trash-alt"></i>
+                    <button className="ms-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
                 </div>
               ),
             }))}
           />
         )}
-        <Modal
-          title="Chèn khuyến mãi"
-          visible={isModalVisible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6 ">
-                <div>
-                  <h5 className="text-center">Chọn tour</h5>
-                  <Checkbox.Group
-                    value={tourId}
-                    style={{ width: "100%" }}
-                    onChange={onChangeCheckbox}
-                  >
-                    <Row>
-                      <Col className="w-100" onChange={checkAll}>
-                        <Checkbox id="all" value={0}>
-                          Chọn tất cả
-                        </Checkbox>
-                      </Col>
-                      {!tours
-                        ? ""
-                        : tours.map((ok) => (
-                            <Col className="w-100" key={ok.id}>
-                              <Checkbox value={ok.id}>{ok.name}</Checkbox>
-                            </Col>
-                          ))}
-                    </Row>
-                  </Checkbox.Group>
-                </div>
-              </div>
-              <div className="col-md-6 ">
-                <div>
-                  <h5 className="text-center">Chọn khuyến mãi</h5>
-                  <Radio.Group onChange={onChangeRadio}>
-                    <Radio style={{ width: "100%" }} value="0">
-                      Huỷ khuyến mãi
-                    </Radio>
-                    {!khuyenmais
-                      ? ""
-                      : khuyenmais.map((ok) => (
-                          <Radio style={{ width: "100%" }} value={ok.id}>
-                            {ok.name}
-                          </Radio>
-                        ))}
-                  </Radio.Group>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Modal>
       </div>
     </div>
   );

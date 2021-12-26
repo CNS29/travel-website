@@ -1,18 +1,25 @@
 import { Spin } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-function Chitietbinhluan(props) {
+import { useHistory, useParams } from "react-router-dom";
+function Chitietbinhluan() {
   const { id } = useParams();
+  const history = useHistory();
   const binhluan = useSelector((state) => {
     if (state.binhluan.binhluan.data) {
-      return state.binhluans.binhluan.data.find((x) => x.id === +id);
+      return state.binhluan.binhluan.data.find((x) => x.id === +id);
     } else {
       return "ko";
     }
   });
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>Chi tiết bình luận</h4>
         <div className="hr"></div>

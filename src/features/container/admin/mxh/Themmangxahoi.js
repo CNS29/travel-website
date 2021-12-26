@@ -63,8 +63,14 @@ function Themmangxahoi(props) {
       history.push("/admin/mangxahoi");
     }
   };
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>{id ? "Sửa mạng xã hội" : "Thêm mạng xã hội"}</h4>
         <div className="hr"></div>

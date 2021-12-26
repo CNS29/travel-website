@@ -13,9 +13,10 @@ export default function Lichsu() {
       }
     }
   }
+  console.log(thongtin);
   return (
     <div className="history">
-      <h4 className="text-center">Lịch sử đặt Tour</h4>
+      <h4 className="text-center mb-3">Lịch sử đặt Tour</h4>
       <div className="history__content">
         {thongtin.length === 0 ? (
           <h4 className="not-infor">Không có thông tin</h4>
@@ -24,7 +25,14 @@ export default function Lichsu() {
             <Link to={`/tours/${ok.tourId}`} key={index}>
               <div className="history_item">
                 <img src={ok.Tour.avatar} alt={ok.name} />
-                <table>
+                <table className="mx-5">
+                  <thead>
+                    <tr>
+                      <th>
+                        <h4 className="my-2">{ok.Tour.name}</h4>
+                      </th>
+                    </tr>
+                  </thead>
                   <tbody>
                     <tr>
                       <th>Ngày khởi hành: {ok.ngaydi}</th>
@@ -35,10 +43,6 @@ export default function Lichsu() {
                     <tr>
                       <th>Tổng tiền: {ok.thanhtien.toLocaleString()} VNĐ</th>
                     </tr>
-                  </tbody>
-                </table>
-                <table className="me-4">
-                  <tbody>
                     <tr>
                       <th>Số người lớn: &emsp;&emsp;</th>
                       <th>{ok.nguoilon}</th>

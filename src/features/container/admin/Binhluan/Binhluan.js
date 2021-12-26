@@ -30,11 +30,7 @@ function Binhluan() {
       dataIndex: "status",
     },
     {
-      title: "Hiện trang chủ",
-      dataIndex: "loadhome",
-    },
-    {
-      title: "Action",
+      title: "Hành động",
       dataIndex: "action",
     },
   ];
@@ -75,16 +71,6 @@ function Binhluan() {
       actionResult();
     }, 500);
   };
-  const handleLoadhome = (e, id) => {
-    if (e === 1) {
-      dispatch(updatebinhluan({ loadhome: 0, idsua: id }));
-    } else {
-      dispatch(updatebinhluan({ loadhome: 1, idsua: id }));
-    }
-    setTimeout(() => {
-      actionResult();
-    }, 500);
-  };
   return (
     <div id="admin">
       <div className="heading">
@@ -103,11 +89,7 @@ function Binhluan() {
               key: index + 1,
               user: <span>{ok.User.name}</span>,
               tour: <span>{ok.Tour.name}</span>,
-              binhluan: (
-                <p className="text-justify">
-                  <b>{ok.binhluan}</b>
-                </p>
-              ),
+              binhluan: <p className="admin_limit">{ok.binhluan}</p>,
               star: (
                 <div className="size-binhluan">
                   <Rate className="rate-binhluan" value={ok.star} disabled />
@@ -121,36 +103,22 @@ function Binhluan() {
                         handleStatus(ok.status, ok.id);
                       }}
                     >
-                      <i className="far fa-thumbs-up text-primary"></i>
+                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
                     </span>
                   ) : (
                     <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
-                    </span>
-                  )}
-                </div>
-              ),
-              loadhome: (
-                <div className="action">
-                  {ok.loadhome === 1 ? (
-                    <span
-                      onClick={() => {
-                        handleLoadhome(ok.loadhome, ok.id);
-                      }}
-                    >
-                      <i className="fas fa-check text-success "></i>
-                    </span>
-                  ) : (
-                    <span onClick={() => handleLoadhome(ok.loadhome, ok.id)}>
-                      <i className="fas fa-times text-danger"></i>
+                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
                     </span>
                   )}
                 </div>
               ),
               action: (
                 <div className="action">
-                  <span onClick={() => hangdleInfor(ok.id)}>
-                    <i className="fas fa-info-circle mr-4 text-primary"></i>
+                  <span
+                    onClick={() => hangdleInfor(ok.id)}
+                    class="btn btn-info text-white"
+                  >
+                    Infor
                   </span>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -159,7 +127,7 @@ function Binhluan() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="far fa-trash-alt"></i>
+                    <button className="ms-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
                 </div>
               ),

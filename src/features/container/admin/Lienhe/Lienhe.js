@@ -46,7 +46,7 @@ function Lienhe() {
     }, 500);
   };
   const hangdleEdit = (id) => {
-    history.replace(`${match.url}/sualienhe/${id}`);
+    history.push(`${match.url}/sualienhe/${id}`);
   };
   const handleStatus = (e, id) => {
     if (e === 1) {
@@ -58,6 +58,7 @@ function Lienhe() {
       actionResult();
     }, 500);
   };
+
   return (
     <div id="admin">
       <div className="heading">
@@ -67,8 +68,8 @@ function Lienhe() {
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themlienhe`}>
-            <Button variant="outlined" color="secondary">
-              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm mới
+            <Button variant="outlined" color="primary">
+              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm liên hệ
             </Button>
           </Link>
         </div>
@@ -93,11 +94,11 @@ function Lienhe() {
                         handleStatus(ok.status, ok.id);
                       }}
                     >
-                      <i className="far fa-thumbs-up text-primary"></i>
+                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
                     </span>
                   ) : (
                     <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
+                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
                     </span>
                   )}
                 </div>
@@ -111,7 +112,7 @@ function Lienhe() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
-                    <i className="far fa-edit mr-4"></i>
+                    <button className="btn btn-warning">Sửa</button>
                   </Popconfirm>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -120,7 +121,7 @@ function Lienhe() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="far fa-trash-alt"></i>
+                    <button className="ms-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
                 </div>
               ),

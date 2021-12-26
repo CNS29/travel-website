@@ -55,8 +55,14 @@ function Themkhuyenmai(props) {
       history.push("/admin/khuyenmai");
     }
   };
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>{id ? "Sửa khuyến mãi" : "Thêm khuyến mãi"}</h4>
         <div className="hr"></div>

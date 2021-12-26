@@ -183,7 +183,8 @@ function ListMenu() {
     <Menu>
       {user ? (
         <Menu.ItemGroup>
-          {user.Roles[0].name === "admin" && (
+          {console.log(user.Roles[0].name)}
+          {user.Roles[0].name !== "user" && (
             <Menu.Item key="1">
               <Link to="/admin">Quản lý Admin</Link>
             </Menu.Item>

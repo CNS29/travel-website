@@ -49,8 +49,14 @@ function Themquocgia(props) {
       history.push("/admin/quocgia");
     }
   };
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>{id ? "Sửa quốc gia" : "Thêm quốc gia"}</h4>
         <div className="hr"></div>

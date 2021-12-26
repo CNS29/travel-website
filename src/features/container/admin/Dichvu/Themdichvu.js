@@ -59,8 +59,14 @@ function Themdichvu() {
       history.push("/admin/dichvu");
     }
   };
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>{id ? "Sửa dịch vụ" : "Thêm dịch vụ"}</h4>
         <div className="hr"></div>

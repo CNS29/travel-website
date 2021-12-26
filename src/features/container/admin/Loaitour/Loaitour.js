@@ -14,11 +14,7 @@ function Loaitour(props) {
       dataIndex: "name",
     },
     {
-      title: "Tình trạng",
-      dataIndex: "status",
-    },
-    {
-      title: "Action",
+      title: "Hành động",
       dataIndex: "action",
     },
   ];
@@ -37,17 +33,7 @@ function Loaitour(props) {
     }, 500);
   };
   const hangdleEdit = (id) => {
-    history.replace(`${match.url}/sualoaitour/${id}`);
-  };
-  const handleStatus = (e, id) => {
-    if (e === 1) {
-      dispatch(updateloaitour({ status: 0, idsua: id }));
-    } else {
-      dispatch(updateloaitour({ status: 1, idsua: id }));
-    }
-    setTimeout(() => {
-      actionResult();
-    }, 500);
+    history.push(`${match.url}/sualoaitour/${id}`);
   };
 
   return (
@@ -59,8 +45,8 @@ function Loaitour(props) {
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themloaitour`}>
-            <Button variant="outlined" color="secondary">
-              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm mới
+            <Button variant="outlined" color="primary">
+              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm loại tour
             </Button>
           </Link>
         </div>
@@ -74,23 +60,6 @@ function Loaitour(props) {
             dataSource={loaitours.map((ok, index) => ({
               key: index + 1,
               name: <span>{ok.name}</span>,
-              status: (
-                <div className="action">
-                  {ok.status === 1 ? (
-                    <span
-                      onClick={() => {
-                        handleStatus(ok.status, ok.id);
-                      }}
-                    >
-                      <i className="far fa-thumbs-up text-primary"></i>
-                    </span>
-                  ) : (
-                    <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
-                    </span>
-                  )}
-                </div>
-              ),
               action: (
                 <div className="action">
                   <Popconfirm
@@ -100,7 +69,7 @@ function Loaitour(props) {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
-                    <i className="far fa-edit mr-4"></i>
+                    <button className="btn btn-warning">Sửa</button>
                   </Popconfirm>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -109,7 +78,7 @@ function Loaitour(props) {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="far fa-trash-alt"></i>
+                    <button className="ms-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
                 </div>
               ),
@@ -120,7 +89,5 @@ function Loaitour(props) {
     </div>
   );
 }
-
-Loaitour.propTypes = {};
 
 export default Loaitour;

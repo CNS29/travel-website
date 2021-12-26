@@ -14,12 +14,12 @@ function Mangxahoi() {
 
   const columns = [
     {
-      title: "Mạng xã hội",
-      dataIndex: "name",
-    },
-    {
       title: "Icon",
       dataIndex: "icon",
+    },
+    {
+      title: "Mạng xã hội",
+      dataIndex: "name",
     },
     {
       title: "Màu",
@@ -35,7 +35,7 @@ function Mangxahoi() {
       dataIndex: "status",
     },
     {
-      title: "Action",
+      title: "Hành động",
       dataIndex: "action",
     },
   ];
@@ -74,8 +74,8 @@ function Mangxahoi() {
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themmangxahoi`}>
-            <Button variant="outlined" color="secondary">
-              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm mới
+            <Button variant="outlined" color="primary">
+              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm mạng xã hội
             </Button>
           </Link>
         </div>
@@ -95,8 +95,8 @@ function Mangxahoi() {
                   style={{ fontSize: "1.5rem", color: ok.color }}
                 ></span>
               ),
-              color: <span>{ok.color}</span>,
-              link: <span>{ok.link}</span>,
+              color: <span className="admin_limit">{ok.color}</span>,
+              link: <span className="admin_limit">{ok.link}</span>,
               status: (
                 <div className="action">
                   {ok.status === 1 ? (
@@ -105,11 +105,11 @@ function Mangxahoi() {
                         handleStatus(ok.status, ok.id);
                       }}
                     >
-                      <i className="far fa-thumbs-up text-primary"></i>
+                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
                     </span>
                   ) : (
                     <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
+                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
                     </span>
                   )}
                 </div>
@@ -123,7 +123,7 @@ function Mangxahoi() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
-                    <i className="far fa-edit mr-4"></i>
+                    <button className="btn btn-warning">Sửa</button>
                   </Popconfirm>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -132,7 +132,7 @@ function Mangxahoi() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="far fa-trash-alt"></i>
+                    <button className="ms-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
                 </div>
               ),

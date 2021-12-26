@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Badge, Layout, Menu } from "antd";
+import { Badge, Layout, Menu, Switch as Toggle } from "antd";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import "./nav.css";
 import Headers from "./../header/Header";
@@ -50,6 +50,10 @@ export default function Nav() {
   const match = useRouteMatch();
   const { Header, Sider, Content } = Layout;
   const user = useSelector((state) => state.infor.infor.data);
+  const [theme, setTheme] = React.useState("light");
+  const changeTheme = (value) => {
+    setTheme(value ? "dark" : "light");
+  };
   const hoadoncanhan = useSelector(
     (state) => state.hoadoncanhan.hoadoncanhan.data
   );
@@ -57,7 +61,7 @@ export default function Nav() {
     collapsed: true,
     visible: true,
   });
-  console.log(user);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const actionResult = async () => {
@@ -311,7 +315,7 @@ export default function Nav() {
     </div>
   );
   const menu_quanlytintuc = (
-    <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+    <Menu theme={theme} mode="inline" defaultSelectedKeys={["1"]}>
       <Menu.Item
         key="1"
         icon={
@@ -339,7 +343,7 @@ export default function Nav() {
     </Menu>
   );
   const menu_quanlybinhluan = (
-    <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+    <Menu theme={theme} mode="inline" defaultSelectedKeys={["1"]}>
       <Menu.Item
         key="1"
         icon={
@@ -367,7 +371,7 @@ export default function Nav() {
     </Menu>
   );
   const menu_quanlytour = (
-    <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+    <Menu theme={theme} mode="inline" defaultSelectedKeys={["1"]}>
       <Menu.Item
         key="1"
         icon={
@@ -431,7 +435,7 @@ export default function Nav() {
     </Menu>
   );
   const menu_quanlyadmin = (
-    <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+    <Menu theme={theme} mode="inline" defaultSelectedKeys={["1"]}>
       <Menu.Item
         key="1"
         icon={
@@ -444,7 +448,7 @@ export default function Nav() {
       >
         <Link to="/admin">Doanh thu</Link>
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         key="21"
         icon={
           state.collapsed === true ? (
@@ -457,7 +461,7 @@ export default function Nav() {
         <Link to={`${match.url}/kiemduyet`}>
           Kiểm duyệt tour {counthoadon === 0 ? "" : <Badge status="error" />}
         </Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item
         key="2"
         icon={
@@ -486,18 +490,6 @@ export default function Nav() {
         key="4"
         icon={
           state.collapsed === true ? (
-            <span className="far fa-newspaper"></span>
-          ) : (
-            <span className="far fa-newspaper mr-2"></span>
-          )
-        }
-      >
-        <Link to={`${match.url}/tintuc`}>Quản lý tin tức</Link>
-      </Menu.Item>
-      <Menu.Item
-        key="5"
-        icon={
-          state.collapsed === true ? (
             <span className="fas fa-flag-usa"></span>
           ) : (
             <span className="fas fa-flag-usa mr-2"></span>
@@ -505,6 +497,18 @@ export default function Nav() {
         }
       >
         <Link to={`${match.url}/quocgia`}>Quản lý quốc gia</Link>
+      </Menu.Item>
+      <Menu.Item
+        key="5"
+        icon={
+          state.collapsed === true ? (
+            <span className="far fa-newspaper"></span>
+          ) : (
+            <span className="far fa-newspaper mr-2"></span>
+          )
+        }
+      >
+        <Link to={`${match.url}/tintuc`}>Quản lý tin tức</Link>
       </Menu.Item>
       <Menu.Item
         key="6"
@@ -554,7 +558,7 @@ export default function Nav() {
       >
         <Link to={`${match.url}/binhluan`}>Quản lý bình luận</Link>
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         key="10"
         icon={
           state.collapsed === true ? (
@@ -565,7 +569,7 @@ export default function Nav() {
         }
       >
         <Link to={`${match.url}/tag`}>Quản lý tag</Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item
         key="11"
         icon={
@@ -650,7 +654,7 @@ export default function Nav() {
       >
         <Link to={`${match.url}/ngaydi`}>Quản lý Ngày đi</Link>
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         key="17"
         icon={
           state.collapsed === true ? (
@@ -661,7 +665,7 @@ export default function Nav() {
         }
       >
         <Link to={`${match.url}/camnangdulich`}>Cẩm nang du lịch</Link>
-      </Menu.Item>
+      </Menu.Item> */}
 
       <Menu.Item
         key="18"
@@ -719,7 +723,7 @@ export default function Nav() {
                 {state.collapsed === true ? (
                   <i className="fas fa-user-shield"></i>
                 ) : (
-                  <strong>Administration</strong>
+                  <strong>Quản lý Website</strong>
                 )}
               </p>
             </Link>
@@ -729,7 +733,6 @@ export default function Nav() {
 
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>
-            <Headers />
             {React.createElement(
               state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {
@@ -737,6 +740,7 @@ export default function Nav() {
                 onClick: toggle,
               }
             )}
+            <Toggle onChange={changeTheme} /> Change Style
           </Header>
           <Content
             className="site-layout-background"

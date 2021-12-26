@@ -1,17 +1,23 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Spin } from "antd";
 import renderHTML from "react-render-html";
-function Chitiettintuc(props) {
+function Chitiettintuc() {
   const { id } = useParams();
+  const history = useHistory();
   const loading = useSelector((state) => state.tintuc.loading);
   const tintuc = useSelector((state) =>
     state.tintuc.tintuc.data.find((x) => x.id === +id)
   );
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>Chi tiết tin tức</h4>
         <div className="hr"></div>

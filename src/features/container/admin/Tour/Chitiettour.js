@@ -2,15 +2,22 @@ import { Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import renderHTML from "react-render-html";
-import { useParams } from "react-router-dom";
-function Chitietquocgia(props) {
+import { useParams, useHistory } from "react-router-dom";
+function Chitietquocgia() {
   const { id } = useParams();
+  const history = useHistory();
   const tour = useSelector((state) =>
     state.tour.tour.data.find((x) => x.id === +id)
   );
   const loading = useSelector((state) => state.tour.loading);
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>Chi tiết tour</h4>
         <div className="hr"></div>
@@ -24,58 +31,64 @@ function Chitietquocgia(props) {
           ) : (
             <div>
               <p>
-                Tên tour:&emsp;{" "}
+                <strong>Tên tour:&emsp;</strong>
                 <b>
                   <i>{tour.name}</i>
                 </b>
               </p>
               <p>
-                Avatar:&emsp;
-                <img width="350px" height="393px" src={tour.avatar} alt="" />
+                <strong>Avatar</strong>
+                <br />
+                <img
+                  width="350px"
+                  height="393px"
+                  src={tour.avatar}
+                  alt={tour.tenanh}
+                />
               </p>
-              <p>Trailer:</p>
+              <strong>Trailer:</strong>
               <div className="text-center">
                 <div className="embed-responsive embed-responsive-16by9">
                   {renderHTML(tour.trailer)}
                 </div>
               </div>
               <p>
-                Giá tiền người lớn:&emsp;{" "}
+                <strong>Giá tiền người lớn:&emsp;</strong>
                 <b>
                   <i>{tour.gianguoilon}</i>
                 </b>
               </p>
               <p>
-                Giá trẻ em:&emsp;{" "}
+                <strong> Giá trẻ em:&emsp;</strong>
                 <b>
                   <i>{tour.giatreem}</i>
                 </b>
               </p>
               <p>
-                Giá em bé:&emsp;{" "}
+                <strong>Giá em bé:&emsp;</strong>
                 <b>
                   <i>{tour.giaembe}</i>
                 </b>
               </p>
-              <p>Banner: </p>
+              <strong>Banner:</strong>
               {tour.Anhs.map((oki) => (
                 <div className="text-center mb-3">
                   <img src={oki.link} width="500px" height="400px" alt="" />
                 </div>
               ))}
-              <p>Bản đồ:&emsp; </p>
+              <strong>Bản đồ:&emsp; </strong>
               <div
                 id="map-container-google-1"
                 className="z-depth-1-half map-container mb-3"
               >
                 {renderHTML(tour.bando)}
               </div>
-              <p className="text-justify">
+              <strong className="text-justify">
                 Chi tiết tour:&emsp; {renderHTML(tour.chitiettour)}
-              </p>
-              <p className="text-justify">
+              </strong>
+              <strong className="text-justify">
                 Lưu ý:&emsp; {renderHTML(tour.luuy)}
-              </p>
+              </strong>
             </div>
           )}
         </div>

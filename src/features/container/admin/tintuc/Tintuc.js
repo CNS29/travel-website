@@ -8,7 +8,7 @@ import "./tintuc.css";
 import { removetintuc, tintucData, updatetintuc } from "./tintucSlice";
 function Tintuc() {
   const match = useRouteMatch();
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const tintucs = useSelector((state) => state.tintuc.tintuc.data);
   const loading = useSelector((state) => state.tintuc.Loading);
@@ -22,6 +22,10 @@ function Tintuc() {
   const actionResult = async () => await dispatch(tintucData());
   const columns = [
     {
+      title: "Hình ảnh",
+      dataIndex: "anh",
+    },
+    {
       title: "Tiêu đề",
       dataIndex: "name",
     },
@@ -30,19 +34,15 @@ function Tintuc() {
       dataIndex: "author",
     },
     {
-      title: "Ảnh",
-      dataIndex: "anh",
-    },
-    {
       title: "Tình trạng",
       dataIndex: "status",
     },
     {
-      title: "Action",
+      title: "Hành động",
       dataIndex: "action",
     },
   ];
-  const history = useHistory();
+
   const hangdleDelete = (e) => {
     if (users.role === "biên tập viên") {
       message.warning("Bạn không có đủ quyền để thực thi!");
@@ -58,7 +58,7 @@ function Tintuc() {
     if (users.role === "biên tập viên") {
       message.warning("Bạn không có đủ quyền để thực thi!");
     } else {
-      history.replace(`${match.url}/suatintuc/${id}`);
+      history.push(`${match.url}/suatintuc/${id}`);
     }
   };
   const handleStatus = (e, id) => {
@@ -66,9 +66,9 @@ function Tintuc() {
       message.warning("Bạn không có đủ quyền để thực thi!");
     } else {
       if (e === 1) {
-        dispatch(updatetintuc({ status: 0, idsua: id }));
+        dispatch(updatetintuc({ status: 0, id: id }));
       } else {
-        dispatch(updatetintuc({ status: 1, idsua: id }));
+        dispatch(updatetintuc({ status: 1, id: id }));
       }
       setTimeout(() => {
         actionResult();
@@ -85,8 +85,8 @@ function Tintuc() {
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themtintuc`}>
-            <Button variant="outlined" color="secondary">
-              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm mới
+            <Button variant="outlined" color="primary">
+              <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm bài đăng
             </Button>
           </Link>
         </div>
@@ -109,17 +109,17 @@ function Tintuc() {
               status: (
                 <div className="action">
                   {ok.status === 1 ? (
-                    <Link
+                    <span
                       onClick={() => {
                         handleStatus(ok.status, ok.id);
                       }}
                     >
-                      <i className="far fa-thumbs-up "></i>
-                    </Link>
+                      <i class="badge rounded-pill bg-success">Kích hoạt</i>
+                    </span>
                   ) : (
-                    <Link onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
-                    </Link>
+                    <span onClick={() => handleStatus(ok.status, ok.id)}>
+                      <i class="badge rounded-pill bg-secondary">Ẩn</i>
+                    </span>
                   )}
                 </div>
               ),
@@ -132,7 +132,7 @@ function Tintuc() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
-                    <i className="far fa-edit mr-4"></i>
+                    <button className="btn btn-warning">Sửa</button>
                   </Popconfirm>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -141,7 +141,7 @@ function Tintuc() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="far fa-trash-alt"></i>
+                    <button className="ms-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
                 </div>
               ),

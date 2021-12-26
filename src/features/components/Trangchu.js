@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 
 export default function Trangchu() {
   const state = useSelector((state) => state);
-  console.log(state);
   return (
     <div>
       <Banner />

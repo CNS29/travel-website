@@ -10,20 +10,9 @@ import Chitietgia from "../gia/Chitietgia";
 import "./detail.css";
 function Detail(props) {
   const { TabPane } = Tabs;
-  // const renderTabBar = (props, DefaultTabBar) => (
-  //   <Sticky bottomOffset={80}>
-  //     {({ style }) => (
-  //       <DefaultTabBar
-  //         {...props}
-  //         className="site-custom-tab-bar"
-  //         style={{ ...style }}
-  //       />
-  //     )}
-  //   </Sticky>
-  // );
   return (
     <div className="mb-5 ">
-      <Tabs defaultActiveKey="1" renderTabBar={""}>
+      <Tabs defaultActiveKey="1">
         <TabPane tab="Chi tiết tour" key="1">
           <Chitiettour id={props.id} />
         </TabPane>
@@ -48,7 +37,5 @@ function Detail(props) {
     </div>
   );
 }
-
-Detail.propTypes = {};
 
 export default Detail;

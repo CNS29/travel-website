@@ -30,16 +30,9 @@ function Themdiadiem(props) {
     status: 1,
     idsua: "",
   });
-  const quocgias = useSelector((state) => state.quocgias.quocgia.data);
-  var quocgia = [];
-  if (quocgias) {
-    for (let i = 0; i < quocgias.length; i++) {
-      if (quocgias[i].status === 1) {
-        quocgia.push(quocgias[i]);
-      }
-    }
-  }
-  const loading = useSelector((state) => state.quocgias.loading);
+  const quocgias = useSelector((state) => state.quocgia.quocgia.data);
+
+  const loading = useSelector((state) => state.quocgia.loading);
   const onChange = (e) => {
     setState({
       ...state,
@@ -76,9 +69,15 @@ function Themdiadiem(props) {
       quocgiaId: e,
     });
   };
+  const backPage = () => {
+    history.goBack();
+  };
   const { name, quocgiaId } = state;
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>{id ? "Sửa địa điểm" : "Thêm địa điểm"}</h4>
         <div className="hr"></div>
@@ -87,6 +86,7 @@ function Themdiadiem(props) {
         <form action="" method="post" onSubmit={onSubmit}>
           <div className="form-group">
             <label htmlhtmlFor="">Quốc gia</label>
+            <br />
             {loading ? (
               <span>
                 <Select className="w-25 ml-4"></Select>
@@ -94,7 +94,7 @@ function Themdiadiem(props) {
               </span>
             ) : (
               <Select value={quocgiaId} onChange={onId} className="w-25 ml-4">
-                {quocgia.map((ok) => (
+                {quocgias.map((ok) => (
                   <Option key={ok.id} value={ok.id}>
                     {" "}
                     {ok.name}

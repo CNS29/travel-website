@@ -4,8 +4,8 @@ import { Button } from "@material-ui/core";
 import "./doanhthu.css";
 import { useDispatch, useSelector } from "react-redux";
 import { chitieuData } from "./chitieuSlice";
-import Axios from "axios";
 import { userData } from "../taikhoan/taikhoanSlice";
+import chitieuApi from "../../../../api/chitieuApi";
 
 export default function Doanhthu() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -15,7 +15,7 @@ export default function Doanhthu() {
     chitieunam: "",
   });
   // const [usd, setusd] = useState(1);
-  const [usd, setusd] = useState(23060);
+  const usd = 23000;
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -23,20 +23,18 @@ export default function Doanhthu() {
 
   const handleOk = () => {
     setIsModalVisible(false);
+    chitieuApi.editchitieu({
+      idsua: 1,
+      chitieungay: state.chitieungay,
+      chitieuthang: state.chitieuthang,
+      chitieunam: state.chitieunam,
+    });
   };
-  const chiphi = useSelector((state) => state.chiphi?.chiphi.data);
+
   const dispatch = useDispatch();
   const actionResult = async () => {
     await dispatch(userData());
   };
-
-  let TongChiPhi = 0;
-
-  if (chiphi) {
-    for (let i = 0; i < chiphi.length; i++) {
-      TongChiPhi += chiphi[i].money;
-    }
-  }
   const actionChitiet = async () => await dispatch(chitieuData());
   const chitieu = useSelector((state) => state.chitieu.chitieu.data);
   useEffect(() => {
@@ -90,7 +88,7 @@ export default function Doanhthu() {
       "-" +
       date.getFullYear();
     for (let i = 0; i < HoaDonDate.length; i++) {
-      if (HoaDonDate[i].date == dateToday) {
+      if (HoaDonDate[i].date === dateToday) {
         ThuNhapHomNay += HoaDonDate[i].tongtien;
       }
     }
@@ -105,7 +103,7 @@ export default function Doanhthu() {
       "-" +
       date.getFullYear();
     for (let i = 0; i < HoaDonDate.length; i++) {
-      if (HoaDonDate[i].date.substr(3) == dateMonth) {
+      if (HoaDonDate[i].date.substr(3) === dateMonth) {
         ThuNhapThang += HoaDonDate[i].tongtien;
       }
     }
@@ -115,7 +113,7 @@ export default function Doanhthu() {
     let date = new Date();
     let dateYear = date.getFullYear();
     for (let i = 0; i < HoaDonDate.length; i++) {
-      if (HoaDonDate[i].date.substr(6) == dateYear) {
+      if (+HoaDonDate[i].date.substr(6) === dateYear) {
         ThuNhapNam += HoaDonDate[i].tongtien;
       }
     }
@@ -126,10 +124,9 @@ export default function Doanhthu() {
       TongThuNhap += HoaDon[i].thanhtien;
     }
   }
-  console.log(usd);
-  const LoiNhuan = (a, b) => {
-    return (b - a).toLocaleString();
-  };
+  // const LoiNhuan = (a, b) => {
+  //   return (b - a).toLocaleString();
+  // };
   const onChange = (e) => {
     setState({
       ...state,
@@ -137,12 +134,11 @@ export default function Doanhthu() {
     });
   };
   let thunhap = Number((TongThuNhap / usd).toFixed(0));
-  let chiphitong = Number((TongChiPhi / usd).toFixed(0));
   const { chitieunam, chitieuthang, chitieungay } = state;
   return (
     <div id="doanhthu">
       <h4>Doanh thu công ty</h4>
-      <div className="row">
+      <div className="row my-3">
         <div className="col-md">
           <div className="float-left mr-2">
             <div className="icon">
@@ -150,46 +146,11 @@ export default function Doanhthu() {
             </div>
           </div>
           <div className="monney">
+            <span>Tổng thu nhập</span>
+            <br />
             <span>
               <strong>$ {TongThuNhap ? thunhap.toLocaleString() : 0}</strong>
             </span>
-            <br />
-            <span>Tổng thu nhập</span>
-          </div>
-        </div>
-
-        <div className="col-md">
-          <div className="float-right mr-2">
-            <div className="icon">
-              <i className="fas fa-money-bill-alt"></i>
-            </div>
-          </div>
-          <div className="monney float-right">
-            <span>
-              <strong>
-                ${" "}
-                {LoiNhuan(
-                  (TongChiPhi / usd).toFixed(0),
-                  (TongThuNhap / usd).toFixed(0)
-                )}
-              </strong>
-            </span>
-            <br />
-            <span>Lợi nhuận</span>
-          </div>
-        </div>
-        <div className="col-md">
-          <div className="float-left mr-2">
-            <div className="icon">
-              <i className="fas fa-chart-pie"></i>
-            </div>
-          </div>
-          <div className="monney">
-            <span>
-              <strong>$ {chiphitong.toLocaleString()}</strong>
-            </span>
-            <br />
-            <span>Tổng chi</span>
           </div>
         </div>
         <div className="col-md">
@@ -199,11 +160,11 @@ export default function Doanhthu() {
             </div>
           </div>
           <div className="monney">
+            <span>Tổng người dùng</span>
+            <br />
             <span>
               <strong>{SoNguoiDung ? SoNguoiDung.length : 0}</strong>
             </span>
-            <br />
-            <span>Tổng người dùng</span>
           </div>
         </div>
       </div>
@@ -347,42 +308,42 @@ export default function Doanhthu() {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <div class="form-group">
-          <label for="">Chỉ tiêu ngày</label>
+        <div className="form-group">
+          <label>Chỉ tiêu ngày</label>
           <input
             type="number"
             name="chitieungay"
             value={chitieungay}
             onChange={onChange}
             id=""
-            class="form-control"
+            className="form-control"
             placeholder=""
             aria-describedby="helpId"
           />
         </div>
 
-        <div class="form-group">
-          <label for="">Chỉ tiêu tháng</label>
+        <div className="form-group">
+          <label>Chỉ tiêu tháng</label>
           <input
             type="number"
             name="chitieuthang"
             value={chitieuthang}
             onChange={onChange}
             id=""
-            class="form-control"
+            className="form-control"
             placeholder=""
             aria-describedby="helpId"
           />
         </div>
-        <div class="form-group">
-          <label for="">Chỉ tiêu năm</label>
+        <div className="form-group">
+          <label>Chỉ tiêu năm</label>
           <input
             type="number"
             name="chitieunam"
             value={chitieunam}
             onChange={onChange}
             id=""
-            class="form-control"
+            className="form-control"
             placeholder=""
             aria-describedby="helpId"
           />

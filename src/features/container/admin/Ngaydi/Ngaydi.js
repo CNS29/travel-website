@@ -18,16 +18,12 @@ function Ngaydi() {
       dataIndex: "ngay",
     },
     {
-      title: "Tình trạng",
-      dataIndex: "status",
-    },
-    {
       title: "Action",
       dataIndex: "action",
     },
   ];
   const [date, setdate] = useState("");
-  function onChange(dates, dateStrings) {
+  function onChange(date, dateStrings) {
     setdate(dateStrings);
   }
   const addDate = () => {
@@ -57,16 +53,6 @@ function Ngaydi() {
       actionResult();
     }, 500);
   };
-  const handleStatus = (e, id) => {
-    if (e === 1) {
-      dispatch(updatengaydi({ status: 0, idsua: id }));
-    } else {
-      dispatch(updatengaydi({ status: 1, idsua: id }));
-    }
-    setTimeout(() => {
-      actionResult();
-    }, 500);
-  };
   return (
     <div id="admin">
       <div className="heading">
@@ -76,15 +62,10 @@ function Ngaydi() {
       <div className="content">
         <div className="add">
           <Space direction="vertical">
-            <DatePicker
-              className="mr-3"
-              id="date"
-              format="DD/MM/YYYY"
-              onChange={onChange}
-            />
+            <DatePicker className="me-3" id="date" onChange={onChange} />
           </Space>
-          <Button variant="outlined" color="secondary" onClick={addDate}>
-            <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm mới
+          <Button variant="outlined" color="primary" onClick={addDate}>
+            <i className="fas fa-plus"></i>&nbsp;&nbsp; Thêm ngày đi
           </Button>
         </div>
         {loading ? (
@@ -97,23 +78,6 @@ function Ngaydi() {
             dataSource={ngaydi.map((ok, index) => ({
               key: index + 1,
               ngay: <span>{ok.ngay}</span>,
-              status: (
-                <div className="action">
-                  {ok.status === 1 ? (
-                    <span
-                      onClick={() => {
-                        handleStatus(ok.status, ok.id);
-                      }}
-                    >
-                      <i className="far fa-thumbs-up text-primary"></i>
-                    </span>
-                  ) : (
-                    <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
-                    </span>
-                  )}
-                </div>
-              ),
               action: (
                 <div className="action">
                   <Popconfirm
@@ -123,7 +87,7 @@ function Ngaydi() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="far fa-trash-alt"></i>
+                    <button className="ms-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
                 </div>
               ),

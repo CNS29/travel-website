@@ -29,7 +29,7 @@ class TintucApi {
       });
   };
   edittintuc = (params) => {
-    const url = `/tintuc/${params.idsua}`;
+    const url = `/tintuc/${params.id}`;
     return axiosClient
       .patch(url, params)
       .then((data) => {

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { addrole, roleData, updaterole } from "./roleSlice";
 
-function Themrole(props) {
+function Themrole() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [state, setState] = useState({ status: 1, name: "", idsua: "" });
@@ -49,8 +49,14 @@ function Themrole(props) {
       history.push("/admin/role");
     }
   };
+  const backPage = () => {
+    history.goBack();
+  };
   return (
     <div id="admin">
+      <button onClick={backPage} className="btn btn-primary">
+        Quay lại
+      </button>
       <div className="heading">
         <h4>{id ? "Sửa quyền" : "Thêm quyền"}</h4>
         <div className="hr"></div>
@@ -79,7 +85,5 @@ function Themrole(props) {
     </div>
   );
 }
-
-Themrole.propTypes = {};
 
 export default Themrole;

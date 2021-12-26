@@ -87,11 +87,11 @@ function Hoadoncanhan() {
                 <div className="action">
                   {ok.kiemduyet === 1 ? (
                     <span>
-                      <i className="far fa-thumbs-up text-primary"></i>
+                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
                     </span>
                   ) : (
                     <span>
-                      <i className="far fa-thumbs-down "></i>
+                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
                     </span>
                   )}
                 </div>

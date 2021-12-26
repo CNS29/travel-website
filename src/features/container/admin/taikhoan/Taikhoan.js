@@ -13,16 +13,16 @@ function Taikhoan() {
 
   const columns = [
     {
-      title: "tên",
+      title: "Ảnh đại diện",
+      dataIndex: "avatar",
+    },
+    {
+      title: "Tên",
       dataIndex: "name",
     },
     {
-      title: "email",
+      title: "Email",
       dataIndex: "email",
-    },
-    {
-      title: "ảnh",
-      dataIndex: "avatar",
     },
     {
       title: "Tình trạng",
@@ -33,7 +33,7 @@ function Taikhoan() {
       dataIndex: "role",
     },
     {
-      title: "Action",
+      title: "Hành động",
       dataIndex: "action",
     },
   ];
@@ -59,7 +59,7 @@ function Taikhoan() {
   };
   const roles = useSelector((state) => state.role.role.data);
   const handleOk = async () => {
-    var inforadmin = await taikhoanApi.getOneAdmin(userId).then((ok) => {
+    let inforadmin = await taikhoanApi.getOneAdmin(userId).then((ok) => {
       return ok;
     });
     await userroleApi.edituserrole({ idsua: inforadmin.id, roleId: value });
@@ -74,9 +74,9 @@ function Taikhoan() {
   };
   const handleStatus = (e, id) => {
     if (e === 1) {
-      dispatch(updateuser({ status: 0, idsua: id }));
+      dispatch(updateuser({ status: 0, id: id }));
     } else {
-      dispatch(updateuser({ status: 1, idsua: id }));
+      dispatch(updateuser({ status: 1, id: id }));
     }
     setTimeout(() => {
       actionResult();
@@ -121,17 +121,17 @@ function Taikhoan() {
                         handleStatus(ok.status, ok.id);
                       }}
                     >
-                      <i className="far fa-thumbs-up text-primary"></i>
+                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
                     </span>
                   ) : (
                     <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="far fa-thumbs-down "></i>
+                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
                     </span>
                   )}
                 </div>
               ),
               role:
-                ok.Roles.name === "admin" ? (
+                ok.Roles[0].name === "admin" ? (
                   <span className="text-danger">
                     <b>{chuhoa(ok.Roles[0].name)}</b>
                   </span>
