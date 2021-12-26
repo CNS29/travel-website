@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 export default function Lichsu() {
   const infor = useSelector((state) => state.infor.infor.data);
-  const hoadons = useSelector((state) => state.hoadons.hoadon.data);
+  const hoadons = useSelector((state) => state.hoadon.hoadon.data);
   let thongtin = [];
   if (hoadons && infor) {
     for (let i = 0; i < hoadons.length; i++) {

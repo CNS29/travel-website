@@ -21,6 +21,7 @@ export function ratingPoint(idTour, listComment) {
   score = isNaN(score) ? 0 : score;
   return score;
 }
+console.log(currentTime);
 
 export function validDate(listDate) {
   if (!listDate || listDate.length === 0) return "Not list date";

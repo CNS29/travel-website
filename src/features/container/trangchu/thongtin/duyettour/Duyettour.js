@@ -16,7 +16,7 @@ export default function Duyettour() {
   };
   const infor = useSelector((state) => state.infor.infor.data);
   const hoadoncanhans = useSelector(
-    (state) => state.hoadoncanhans.hoadoncanhan.data
+    (state) => state.hoadoncanhan.hoadoncanhan.data
   );
   const hoadon = [];
   if (hoadoncanhans && infor) {

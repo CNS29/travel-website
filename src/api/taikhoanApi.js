@@ -3,7 +3,7 @@ import axiosClient from "./axiosClient";
 
 class TaikhoanApi {
   getAll = (params) => {
-    const url = "/users";
+    const url = "/user";
     return axiosClient.get(url, { params });
   };
   checkEmail = (email) => {
@@ -13,7 +13,7 @@ class TaikhoanApi {
     });
   };
   getOne = (params) => {
-    const url = `/users/${params}`;
+    const url = `/user/${params}`;
     return axiosClient.get(url).then((data) => {
       return data.data;
     });
@@ -25,7 +25,7 @@ class TaikhoanApi {
     });
   };
   postuser = (params) => {
-    const url = "/users";
+    const url = "/user";
     return axiosClient
       .post(url, params)
       .then((data) => {
@@ -36,7 +36,7 @@ class TaikhoanApi {
       });
   };
   deleteuser = (id) => {
-    const url = `/users/${id}`;
+    const url = `/user/${id}`;
     return axiosClient
       .delete(url)
       .then((data) => {
@@ -47,7 +47,7 @@ class TaikhoanApi {
       });
   };
   edituser = (params) => {
-    const url = `/users/${params.id}`;
+    const url = `/user/${params.id}`;
     return axiosClient
       .patch(url, params)
       .then((data) => {

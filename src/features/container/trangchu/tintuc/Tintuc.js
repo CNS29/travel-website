@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, Link as Linkrt } from "react-router-dom";
 import "./tintuc.css";
 function Tintuc() {
-  const tintucs = useSelector((state) => state.tintucs.tintuc.data);
+  const tintucs = useSelector((state) => state.tintuc.tintuc.data);
   const tintuc = [];
   if (tintucs) {
     var sort = [];

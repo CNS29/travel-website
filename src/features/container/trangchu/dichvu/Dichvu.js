@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "./dichvu.css";
 import "../../../../fixed.css";
 function Dichvu() {
-  const dichvus = useSelector((state) => state.dichvus.dichvu.data);
+  const dichvus = useSelector((state) => state.dichvu.dichvu.data);
   var dichvu = [];
   if (dichvus) {
     for (let i = 0; i < dichvus.length; i++) {

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 import { validDate, ratingPoint } from "../../../common/commonHandle";
 
-import { Rate, Spin, Tooltip } from "antd";
+import { Rate, Spin, Tooltip, Button } from "antd";
 
 function Touryeuthich() {
-  const binhluans = useSelector((state) => state.binhluans.binhluan.data);
-  const tours = useSelector((state) => state.tours.tour.data);
+  const binhluans = useSelector((state) => state.binhluan.binhluan.data);
+  const tours = useSelector((state) => state.tour.tour.data);
   const [tour, setTour] = useState();
 
   useEffect(() => {
@@ -25,17 +25,52 @@ function Touryeuthich() {
     }
     setTour(tourFavorite);
   }, [tours, binhluans]);
-
+  console.log(tour);
   return (
-    <div className="mt-5 mb-5 tour tour-yeuthich">
+    <div className="mt-5 mb-5 tour tour-favor">
       <div className="heading text-center">
         <span>Tour du lịch được yêu thích</span>
       </div>
       <div className="container">
-        <div className="row">
-          {<Spin />}
-          <div className="col-md-4"></div>
-        </div>
+        {!tour ? (
+          <div className="text-center py-4">
+            <Spin />
+          </div>
+        ) : (
+          <div className="row g-3">
+            {tour.map((item) => (
+              <div className="col-md-4">
+                <div className="tour-favor-item">
+                  <img
+                    src={item.avatar}
+                    className="img-fluid"
+                    alt={item.tenanh}
+                  />
+                  {item.Khuyenmais.length !== 0 &&
+                    item.Khuyenmais[0].status === 1 && (
+                      <Tooltip
+                        placement="right"
+                        title={item.Khuyenmais[0].name}
+                      >
+                        <Button>Giảm {item.Khuyenmais[0].khuyenmai}%</Button>
+                      </Tooltip>
+                    )}
+                  <div className="content_tour">
+                    <div className="title_tour text-capitalize">
+                      {item.name}
+                    </div>
+                    <div className="mt-2 d-flex justify-content-between align-items-center">
+                      <div className="star">
+                        <Rate value={item.rating} disabled />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <Link to={`/tours/${item.id}`} key={item.id}></Link>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -48,7 +83,7 @@ export default Touryeuthich;
 //   responsive={responsive}
 //   draggable={false}
 // >
-//   {tour.map((ok) => (
+//   {tour.map((item) => (
 //     <Link to={`/tours/${ok.id}`} key={ok.id}>
 //       <div className="tour-item">
 //         {ok.Khuyenmais.length !== 0 && ok.Khuyenmais[0].status === 1 && (

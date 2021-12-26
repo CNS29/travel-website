@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./footer.css";
 function Footer() {
-  const contact = useSelector((state) => state.lienhes.lienhe.data);
-  const social = useSelector((state) => state.mangxahois.mangxahoi.data);
+  const contact = useSelector((state) => state.lienhe.lienhe.data);
+  const social = useSelector((state) => state.mangxahoi.mangxahoi.data);
   const [data, setData] = useState({
     contact: null,
     social: null,

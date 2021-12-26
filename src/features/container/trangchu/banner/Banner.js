@@ -6,14 +6,14 @@ import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "./banner.css";
 
 function Banner() {
-  const anh = useSelector((state) => state.anhs.anh.data);
+  const anh = useSelector((state) => state.anh.anh.data);
   const [banner, setBanner] = useState();
 
   useEffect(() => {
     if (!anh) return;
     const newBanner = [];
     for (let i = 0; i < anh.length; i++) {
-      if (anh[i].status === 1 && anh[i].banner === 1) {
+      if (anh[i].banner === 1) {
         newBanner.push(anh[i]);
       }
     }

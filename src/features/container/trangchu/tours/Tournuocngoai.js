@@ -3,8 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function Tournuocngoai() {
-  const tours = useSelector((state) => state.tours.tour.data);
-  const binhluans = useSelector((state) => state.binhluans.binhluan.data);
+  const tours = useSelector((state) => state.tour.tour.data);
+  const binhluans = useSelector((state) => state.binhluan.binhluan.data);
   const tour = [];
   const formatdate = (e) => {
     if (e) {

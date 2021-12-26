@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import "./ykien.css";
 
 function Ykienkhachhang() {
-  const binhluans = useSelector((state) => state.binhluans.binhluan.data);
+  const binhluans = useSelector((state) => state.binhluan.binhluan.data);
   var binhluan = [];
   if (binhluans) {
     for (let i = 0; i < binhluans.length; i++) {
