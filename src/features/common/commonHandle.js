@@ -5,13 +5,13 @@ export function dateFormat(date) {
   return date.split("-").reverse().join("/");
 }
 
-export function ratingPoint(idTour, listComment) {
+export function ratingPoint(tourId, listComment) {
   if (!listComment || listComment.length === 0) return "Not list comment";
   const newComment = [];
   let tong = 0;
   for (let i = 0; i < listComment.length; i++) {
     listComment[i].status === 1 &&
-      listComment[i].tourId === idTour &&
+      listComment[i].tourId === tourId &&
       newComment.push(listComment[i]);
   }
   for (let i = 0; i < newComment.length; i++) {
@@ -21,7 +21,6 @@ export function ratingPoint(idTour, listComment) {
   score = isNaN(score) ? 0 : score;
   return score;
 }
-console.log(currentTime);
 
 export function validDate(listDate) {
   if (!listDate || listDate.length === 0) return "Not list date";
