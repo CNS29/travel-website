@@ -6,10 +6,8 @@ import Tournuocngoai from "../container/trangchu/tours/Tournuocngoai";
 import SpecialSale from "../container/trangchu/giamgiadacbiet/SpecialSale";
 import Tintuc from "../container/trangchu/tintuc/Tintuc";
 import Footer from "../container/trangchu/footer/Footer";
-import { useSelector } from "react-redux";
 
 export default function Trangchu() {
-  const state = useSelector((state) => state);
   return (
     <div>
       <Banner />

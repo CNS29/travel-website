@@ -37,6 +37,7 @@ import CreateTour from "../container/createTour/CreateTour";
 import Thongtin from "../container/trangchu/thongtin/Thongtin";
 
 import inforApi from "../../api/inforApi";
+import Contact from "../container/trangchu/contact/Contact";
 
 export default function NestingExample() {
   const dispatch = useDispatch();
@@ -157,6 +158,9 @@ export default function NestingExample() {
         </Route>
         <Route path="/stripe">
           <Stripe />
+        </Route>
+        <Route path="/contact">
+          <Contact />
         </Route>
       </Switch>
     </Router>

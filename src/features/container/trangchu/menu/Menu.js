@@ -279,7 +279,7 @@ function ListMenu() {
                 <NavLink
                   activeClassName="active"
                   className="nav-link"
-                  to="/lienhe"
+                  to="/contact"
                 >
                   Liên hệ
                 </NavLink>
