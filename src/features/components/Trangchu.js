@@ -3,9 +3,8 @@ import Banner from "../container/trangchu/banner/Banner";
 import Touryeuthich from "../container/trangchu/tours/Touryeutich";
 import Tourtrongnuoc from "../container/trangchu/tours/Tourtrongnuoc";
 import Tournuocngoai from "../container/trangchu/tours/Tournuocngoai";
+import SpecialSale from "../container/trangchu/giamgiadacbiet/SpecialSale";
 import Tintuc from "../container/trangchu/tintuc/Tintuc";
-import Ykienkhachhang from "../container/trangchu/ykienkhachhang/ykienkhachhang";
-import Dichvu from "../container/trangchu/dichvu/Dichvu";
 import Footer from "../container/trangchu/footer/Footer";
 import { useSelector } from "react-redux";
 
@@ -17,10 +16,9 @@ export default function Trangchu() {
       <Banner />
       <Touryeuthich />
       <Tourtrongnuoc />
+      <SpecialSale />
       <Tournuocngoai />
-      <Dichvu />
       <Tintuc />
-      <Ykienkhachhang />
       <Footer />
     </div>
   );

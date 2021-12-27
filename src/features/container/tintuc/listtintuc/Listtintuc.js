@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import Footer from "../../trangchu/footer/Footer";
 
 export default function Listtintuc() {
-  const tintucs = useSelector((state) => state.tintucs.tintuc.data);
+  const tintucs = useSelector((state) => state.tintuc.tintuc.data);
   const [page, setPage] = useState(1);
   const [postPage, setPostPage] = useState(6);
   const [tintuc, setTintuc] = useState(null);
@@ -40,26 +40,26 @@ export default function Listtintuc() {
   let start = (page - 1) * postPage;
   let end = postPage + start;
   return (
-    <div id="listtintuc">
-      <div className="breadcrumb">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/">
-                <i className="fas fa-home mr-2"></i>Trang chủ
-              </Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Tin tức
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="title-new mb-5">
-        <h2 className="title_name">Tin tức du lịch </h2>
-        <h5>Cập nhật các thông tin về tin tức mới nhất</h5>
-      </div>
+    <div id="listtintuc" className="margin_header">
       <div className="container content-new">
+        <div className="breadcrumb">
+          <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
+                <Link to="/">
+                  <i className="fas fa-home mr-2"></i>Trang chủ
+                </Link>
+              </li>
+              <li className="breadcrumb-item active" aria-current="page">
+                Tin tức
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div className="title-new mb-5">
+          <h2 className="title_name">Tin tức du lịch </h2>
+          <h5>Cập nhật các thông tin về tin tức mới nhất</h5>
+        </div>
         <div className="box-new ">
           <div className="w-new">
             <div className="row justify-content-center">

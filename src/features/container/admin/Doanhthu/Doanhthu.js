@@ -24,7 +24,7 @@ export default function Doanhthu() {
   const handleOk = () => {
     setIsModalVisible(false);
   };
-  const chiphi = useSelector((state) => state.chiphis?.chiphi.data);
+  const chiphi = useSelector((state) => state.chiphi?.chiphi.data);
   const dispatch = useDispatch();
   const actionResult = async () => {
     await dispatch(userData());
@@ -59,7 +59,7 @@ export default function Doanhthu() {
     setIsModalVisible(false);
   };
   const SoNguoiDung = useSelector((state) => state.taikhoan.user.data);
-  const HoaDon = useSelector((state) => state.hoadons.hoadon.data);
+  const HoaDon = useSelector((state) => state.hoadon.hoadon.data);
   let HoaDonDate = [];
   if (HoaDon) {
     for (let i = 0; i < HoaDon.length; i++) {

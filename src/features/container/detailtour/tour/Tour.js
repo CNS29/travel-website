@@ -20,11 +20,11 @@ function Tour() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const binhluans = useSelector((state) => state.binhluans.binhluan.data);
-  const tours = useSelector((state) => state.tours.tour.data);
-  const ngaydis = useSelector((state) => state.ngaydis.ngaydi.data);
+  const binhluans = useSelector((state) => state.binhluan.binhluan.data);
+  const tours = useSelector((state) => state.tour.tour.data);
+  const ngaydis = useSelector((state) => state.ngaydi.ngaydi.data);
   const users = useSelector((state) => state.infor.infor.data);
-  const hoadons = useSelector((state) => state.hoadons.hoadon.data);
+  const hoadons = useSelector((state) => state.hoadon.hoadon.data);
   const [stylepayment, setstylepayment] = useState(1);
   const [state, setState] = useState({
     listdate: "",

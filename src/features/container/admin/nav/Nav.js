@@ -51,7 +51,7 @@ export default function Nav() {
   const { Header, Sider, Content } = Layout;
   const user = useSelector((state) => state.infor.infor.data);
   const hoadoncanhan = useSelector(
-    (state) => state.hoadoncanhans.hoadoncanhan.data
+    (state) => state.hoadoncanhan.hoadoncanhan.data
   );
   const [state, setState] = useState({
     collapsed: true,

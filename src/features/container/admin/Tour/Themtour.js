@@ -33,7 +33,7 @@ function Themtour(props) {
     });
   };
   const { id } = useParams();
-  const tours = useSelector((state) => state.tours.tour.data);
+  const tours = useSelector((state) => state.tour.tour.data);
   const [state, setState] = useState({
     vitri: 1,
     quocgiaId: "",
@@ -149,9 +149,9 @@ function Themtour(props) {
     }
     setData();
   }, [tours]);
-  const loaitour = useSelector((state) => state.loaitours.loaitour.data);
-  const dichvu = useSelector((state) => state.dichvus.dichvu.data);
-  const loadloaitour = useSelector((state) => state.loaitours.loading);
+  const loaitour = useSelector((state) => state.loaitour.loaitour.data);
+  const dichvu = useSelector((state) => state.dichvu.dichvu.data);
+  const loadloaitour = useSelector((state) => state.loaitour.loading);
   const equar = (a, b) => {
     if (a.length !== b.length) {
       return false;
@@ -439,7 +439,7 @@ function Themtour(props) {
       dichvuId: e,
     });
   };
-  const quocgias = useSelector((state) => state.quocgias.quocgia.data);
+  const quocgias = useSelector((state) => state.quocgia.quocgia.data);
   var tenquocgia = [];
   for (let i = 0; i < quocgias.length; i++) {
     tenquocgia.push(quocgias[i]);
@@ -472,8 +472,8 @@ function Themtour(props) {
     setState({ ...state, diadiemId: value });
   };
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const ngaydi = useSelector((state) => state.ngaydis.ngaydi.data);
-  const loadingngaydi = useSelector((state) => state.ngaydis.loading);
+  const ngaydi = useSelector((state) => state.ngaydi.ngaydi.data);
+  const loadingngaydi = useSelector((state) => state.ngaydi.loading);
   const [ngaydiId, setngaydiId] = useState([]);
   const onchangeNgaydi = (e) => {
     setngaydiId(e);

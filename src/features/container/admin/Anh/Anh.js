@@ -1,7 +1,6 @@
 import { Image, Spin, Table } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useRouteMatch } from "react-router-dom";
 import { anhData, updateanh } from "./anhSlice";
 function Anh() {
   const columns = [
@@ -22,14 +21,13 @@ function Anh() {
       dataIndex: "banner",
     },
   ];
-  const anhs = useSelector((state) => state.anhs.anh.data);
-  const loading = useSelector((state) => state.anhs.loading);
+  const anhs = useSelector((state) => state.anh.anh.data);
+  const loading = useSelector((state) => state.anh.loading);
   const dispatch = useDispatch();
   const actionResult = async () => {
     await dispatch(anhData());
   };
 
-  const history = useHistory();
   const handleStatus = (e, id) => {
     if (e === 1) {
       dispatch(updateanh({ status: 0, idsua: id }));
@@ -109,7 +107,4 @@ function Anh() {
     </div>
   );
 }
-
-Anh.propTypes = {};
-
 export default Anh;

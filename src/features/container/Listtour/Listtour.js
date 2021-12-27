@@ -7,9 +7,9 @@ import "./listtour.css";
 import { useSelector } from "react-redux";
 
 export default function Listtour() {
-  const binhluans = useSelector((state) => state.binhluans.binhluan.data);
-  const tours = useSelector((state) => state.tours.tour.data);
-  const typeTours = useSelector((state) => state.loaitours.loaitour.data);
+  const binhluans = useSelector((state) => state.binhluan.binhluan.data);
+  const tours = useSelector((state) => state.tour.tour.data);
+  const typeTours = useSelector((state) => state.loaitour.loaitour.data);
   const [dataTours, setDataTours] = useState({
     tourIn: [],
     tourOut: [],
@@ -208,24 +208,24 @@ export default function Listtour() {
   let end = postPage + start;
 
   return (
-    <div id="list-tour">
-      <div className="breadcrumb">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/">
-                <i className="fas fa-home mr-2"></i>Trang chủ
-              </Link>
-            </li>
-            <li className="breadcrumb-item active">Tour du lịch</li>
-          </ol>
-        </nav>
-      </div>
-      <div className="title-new mb-5">
-        <h2 className="title_name">Tour Du Lịch</h2>
-        <h5>Trải nghiệm chuyến đi</h5>
-      </div>
+    <div id="list-tour" className="margin_header">
       <div className="container">
+        <div className="breadcrumb">
+          <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
+                <Link to="/">
+                  <i className="fas fa-home mr-2"></i>Trang chủ
+                </Link>
+              </li>
+              <li className="breadcrumb-item active">Tour du lịch</li>
+            </ol>
+          </nav>
+        </div>
+        <div className="title-new mb-5">
+          <h2 className="title_name">Tour Du Lịch</h2>
+          <h5>Trải nghiệm chuyến đi</h5>
+        </div>
         <div className="row gy-4 mb-4 bg-white rounded">
           <div className="col-md-3">
             <h4 className="pt-4 text-center text-uppercase">Chọn lọc</h4>

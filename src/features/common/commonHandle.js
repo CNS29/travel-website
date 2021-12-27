@@ -33,3 +33,7 @@ export function validDate(listDate) {
   }
   return validDay;
 }
+
+export function promotion(money, sale) {
+  return (money - money * (sale / 100)).toLocaleString();
+}

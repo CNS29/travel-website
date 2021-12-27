@@ -15,60 +15,44 @@ export default function Lichsu() {
   }
   return (
     <div className="history">
-      <div className="history__header">
-        <h3 className="text-center">Lịch sử đặt tour</h3>
-        <div className="hr"></div>
-      </div>
+      <h4 className="text-center">Lịch sử đặt Tour</h4>
       <div className="history__content">
         {thongtin.length === 0 ? (
-          <div className="spin">
-            <h4>Không có thông tin</h4>
-          </div>
+          <h4 className="not-infor">Không có thông tin</h4>
         ) : (
           thongtin.map((ok, index) => (
             <Link to={`/tours/${ok.tourId}`} key={index}>
-              <div className="history__box">
-                <img src={ok.Tour.avatar} alt="" />
-                <div className="history__tour">
-                  <div className="history--title">
-                    <div className="history--name">{ok.Tour.name}</div>
-                  </div>
-                  <div className="history--infor">
-                    <table>
-                      <tbody>
-                        <tr>
-                          <th>Ngày khởi hành &emsp;&emsp;</th>
-                          <th>{ok.ngaydi}</th>
-                        </tr>
-                        <tr>
-                          <th>Thời gian</th>
-                          <th>{ok.Tour.thoigian}</th>
-                        </tr>
-                        <tr></tr>
-                      </tbody>
-                    </table>
-                    <table className="nmn">
-                      <tbody>
-                        <tr>
-                          <th>Số người lớn &emsp;&emsp;</th>
-                          <th>{ok.nguoilon}</th>
-                        </tr>
-                        <tr>
-                          <th>Số trẻ em</th>
-                          <th>{ok.treem}</th>
-                        </tr>
-                        <tr>
-                          <th>Số em bé</th>
-                          <th>{ok.embe}</th>
-                        </tr>
-                        <tr>
-                          <th>Tổng tiền</th>
-                          <th>{ok.thanhtien.toLocaleString()} vnđ</th>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+              <div className="history_item">
+                <img src={ok.Tour.avatar} alt={ok.name} />
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>Ngày khởi hành: {ok.ngaydi}</th>
+                    </tr>
+                    <tr>
+                      <th>Thời gian: {ok.Tour.thoigian}</th>
+                    </tr>
+                    <tr>
+                      <th>Tổng tiền: {ok.thanhtien.toLocaleString()} VNĐ</th>
+                    </tr>
+                  </tbody>
+                </table>
+                <table className="me-4">
+                  <tbody>
+                    <tr>
+                      <th>Số người lớn: &emsp;&emsp;</th>
+                      <th>{ok.nguoilon}</th>
+                    </tr>
+                    <tr>
+                      <th>Số trẻ em:</th>
+                      <th>{ok.treem}</th>
+                    </tr>
+                    <tr>
+                      <th>Số em bé:</th>
+                      <th>{ok.embe}</th>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </Link>
           ))

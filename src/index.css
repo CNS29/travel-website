@@ -70,10 +70,15 @@ h6 {
 }
 
 /* Common */
-.heading span {
-  font-size: 2rem;
-  padding-top: 2rem;
-  text-transform: uppercase;
+.not-infor {
+  text-align: center;
+  padding: 150px 0;
+}
+.breadcrumb {
+  margin: 0 !important;
+}
+.margin_header {
+  margin-top: 120px;
 }
 .heading p {
   font-size: 1rem;

@@ -12,21 +12,17 @@ export default function Thongtin() {
   const { TabPane } = Tabs;
   const { tabPosition } = state;
   return (
-    <div>
-      <div className="breadcrumb mt-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/">
-                <i className="fas fa-home mr-2"></i>Trang chủ
-              </Link>
-            </li>
-            <li className="breadcrumb-item">Thông tin</li>
-          </ol>
-        </nav>
-      </div>
+    <div className="margin_header">
       <div className="container">
-        <div className="row">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/">
+              <i className="fas fa-home mr-2"></i>Trang chủ
+            </Link>
+          </li>
+          <li className="breadcrumb-item">Thông tin</li>
+        </ol>
+        <div className="row mt-5">
           {!id ? null : (
             <Tabs
               defaultActiveKey={+id === 0 ? "1" : "2"}

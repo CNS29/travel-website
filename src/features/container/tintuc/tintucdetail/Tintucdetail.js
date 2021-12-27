@@ -7,7 +7,7 @@ import renderHTML from "react-render-html";
 function Tintucdetail() {
   localStorage.setItem("menu", "nothome");
   const { id } = useParams();
-  const tintucs = useSelector((state) => state.tintucs.tintuc.data);
+  const tintucs = useSelector((state) => state.tintuc.tintuc.data);
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -30,49 +30,51 @@ function Tintucdetail() {
     }
   };
   return (
-    <div id="new-detail">
-      <div className="breadcrumb">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/">
-                <i className="fas fa-home mr-2"></i>Trang chủ
-              </Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to="/news">Tin tức</Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              {tintucs ? tintucs.find((x) => x.id === +id).name : ""}
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="content-new">
-        <div className="container bg-white">
-          <div className="row mt-5 mb-5">
-            {tintuc.map((ok) => (
-              <div className="col-md-12" key={ok.id}>
-                <div className="name-new mb-4">
-                  <h2>{ok.name}</h2>
-                </div>
-                <div className="content">
-                  {renderHTML(ok.content)}
-                  <div className="text-right">
-                    <p>
-                      <i>
-                        <strong>Tác giả: {ok.tacgia}</strong>
-                      </i>
-                    </p>
-                    <p>
-                      <i>
-                        <strong>Ngày đăng: {formatdate(ok.createdAt)}</strong>
-                      </i>
-                    </p>
+    <div id="new-detail" className="margin_header">
+      <div className="container">
+        <div className="breadcrumb">
+          <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
+                <Link to="/">
+                  <i className="fas fa-home mr-2"></i>Trang chủ
+                </Link>
+              </li>
+              <li className="breadcrumb-item">
+                <Link to="/news">Tin tức</Link>
+              </li>
+              <li className="breadcrumb-item active" aria-current="page">
+                {tintucs ? tintucs.find((x) => x.id === +id).name : ""}
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div className="content-new">
+          <div className="container bg-white">
+            <div className="row mt-5 mb-5">
+              {tintuc.map((ok) => (
+                <div className="col-md-12" key={ok.id}>
+                  <div className="name-new mb-4">
+                    <h2>{ok.name}</h2>
+                  </div>
+                  <div className="content">
+                    {renderHTML(ok.content)}
+                    <div className="text-right">
+                      <p>
+                        <i>
+                          <strong>Tác giả: {ok.tacgia}</strong>
+                        </i>
+                      </p>
+                      <p>
+                        <i>
+                          <strong>Ngày đăng: {formatdate(ok.createdAt)}</strong>
+                        </i>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -46,56 +46,51 @@ export default function Duyettour() {
   }, []);
   return (
     <div className="duyettour">
-      <div className="duyettour__header">
-        <h3 className="text-center">Duyệt tour</h3>
-        <div className="hr"></div>
-      </div>
+      <h4 className="text-center">Duyệt Tour</h4>
       <div className="container">
         <div className="duyettour__content">
-          {hoadon.length === 0
-            ? ""
-            : hoadon.map((ok, index) => (
-                <div className="duyettour__box" key={index}>
-                  <div className="duyettour--name">{ok.diadiemdi}</div>
-                  <div className="duyettour--form">
-                    <div className="giatour">
-                      {ok.giatien.toLocaleString()} vnđ
-                    </div>
-                  </div>
-                  <div className="btn__tour">
-                    <Popconfirm
-                      title="Bạn có chắc chắn？"
-                      onConfirm={() => {
-                        dongy(ok.id);
-                      }}
-                      icon={
-                        <QuestionCircleOutlined style={{ color: "green" }} />
-                      }
-                    >
-                      <Button
-                        color="primary"
-                        variant="contained"
-                        className="mr-1"
-                      >
-                        Đồng ý
-                      </Button>
-                    </Popconfirm>
-                    <Popconfirm
-                      title="Bạn có chắc chắn？"
-                      onConfirm={() => {
-                        huy(ok.id);
-                      }}
-                      icon={
-                        <QuestionCircleOutlined style={{ color: "green" }} />
-                      }
-                    >
-                      <Button color="secondary" variant="contained">
-                        Huỷ
-                      </Button>
-                    </Popconfirm>
+          {hoadon.length === 0 ? (
+            <h4 className="not-infor">Không có thông tin</h4>
+          ) : (
+            hoadon.map((ok, index) => (
+              <div className="duyettour__box" key={index}>
+                <div className="duyettour--name">{ok.diadiemdi}</div>
+                <div className="duyettour--form">
+                  <div className="giatour">
+                    {ok.giatien.toLocaleString()} vnđ
                   </div>
                 </div>
-              ))}
+                <div className="btn__tour">
+                  <Popconfirm
+                    title="Bạn có chắc chắn？"
+                    onConfirm={() => {
+                      dongy(ok.id);
+                    }}
+                    icon={<QuestionCircleOutlined style={{ color: "green" }} />}
+                  >
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      className="me-2"
+                    >
+                      Đồng ý
+                    </Button>
+                  </Popconfirm>
+                  <Popconfirm
+                    title="Bạn có chắc chắn？"
+                    onConfirm={() => {
+                      huy(ok.id);
+                    }}
+                    icon={<QuestionCircleOutlined style={{ color: "green" }} />}
+                  >
+                    <Button color="secondary" variant="contained">
+                      Huỷ
+                    </Button>
+                  </Popconfirm>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

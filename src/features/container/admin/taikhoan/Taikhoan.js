@@ -57,7 +57,7 @@ function Taikhoan() {
     setUseId(e);
     setIsModalVisible(true);
   };
-  const roles = useSelector((state) => state.roles.role.data);
+  const roles = useSelector((state) => state.role.role.data);
   const handleOk = async () => {
     var inforadmin = await taikhoanApi.getOneAdmin(userId).then((ok) => {
       return ok;
