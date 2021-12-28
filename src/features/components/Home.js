@@ -24,7 +24,7 @@ import { loaitourData } from "../container/admin/Loaitour/loaitourSlice";
 import { diadiemData } from "../container/admin/DiaDiem/diadiemSlice";
 import { mangxahoiData } from "../container/admin/mxh/mangxahoiSlice";
 import { binhluanData } from "../container/admin/Binhluan/binhluanSlice";
-import { tagData } from "../container/admin/Tag/tagSlice";
+// import { tagData } from "../container/admin/Tag/tagSlice";
 import { anhData } from "../container/admin/Anh/anhSlice";
 import { dichvuData } from "../container/admin/Dichvu/dichvuSlice";
 import { hoadonData } from "../container/admin/Hoadon/hoadonSlice";
@@ -61,9 +61,9 @@ export default function NestingExample() {
     const actionbinhluan = async () => {
       await dispatch(binhluanData());
     };
-    const actiontag = async () => {
-      await dispatch(tagData());
-    };
+    // const actiontag = async () => {
+    //   await dispatch(tagData());
+    // };
     const actionanh = async () => {
       await dispatch(anhData());
     };
@@ -101,7 +101,6 @@ export default function NestingExample() {
     actiondiadiem();
     actionmangxahoi();
     actionbinhluan();
-    actiontag();
     actionanh();
     actiondichvu();
     actionhoadon();

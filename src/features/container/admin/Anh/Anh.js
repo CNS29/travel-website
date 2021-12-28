@@ -46,10 +46,6 @@ function Anh() {
   };
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Ảnh</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         {loading ? (
           <div className="spin">
@@ -60,8 +56,8 @@ function Anh() {
             columns={columns}
             dataSource={anhs.map((ok, index) => ({
               key: index + 1,
-              name: <span>{ok.Tour.name}</span>,
-              link: <Image src={ok.link} width="200px" height="150px" alt="" />,
+              name: <p className="tour_admin_table_name">{ok.Tour.name}</p>,
+              link: <Image src={ok.link} />,
               banner: (
                 <div className="action">
                   {ok.banner === 1 ? (

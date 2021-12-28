@@ -1,4 +1,4 @@
-import { Spin, Table, Button, Popconfirm } from "antd";
+import { Spin, Table, Button, Popconfirm, message } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import React, { useEffect } from "react";
@@ -59,9 +59,6 @@ function Role() {
         quanlytour.push(userrole[i]);
       }
       if (userrole[i].roleId === 5) {
-        bientapvien.push(userrole[i]);
-      }
-      if (userrole[i].roleId === 6) {
         nguoidung.push(userrole[i]);
       }
     }
@@ -75,14 +72,16 @@ function Role() {
       case 4:
         return quanlytour.length;
       case 5:
-        return bientapvien.length;
-      case 6:
         return nguoidung.length;
       default:
         return 0;
     }
   };
-  const handleDelete = (id) => {
+  const handleDelete = (id, users) => {
+    if (users !== 0) {
+      message.error("Vẫn còn phân quyền cho người dùng.");
+      return;
+    }
     dispatch(removerole(id));
     setTimeout(() => {
       actionResult();
@@ -95,10 +94,6 @@ function Role() {
 
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Phân quyền</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themrole`}>
@@ -136,7 +131,7 @@ function Role() {
                   <Popconfirm
                     title="Bạn có muốn xoá？"
                     onConfirm={() => {
-                      handleDelete(ok.id);
+                      handleDelete(ok.id, countRole(ok.id));
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >

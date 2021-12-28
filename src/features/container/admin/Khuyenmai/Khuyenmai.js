@@ -77,10 +77,6 @@ function Khuyenmai() {
 
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Khuyễn mãi</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themkhuyenmai`}>

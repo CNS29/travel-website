@@ -95,7 +95,7 @@ function Tintuc() {
             columns={columns}
             dataSource={sort.map((ok, index) => ({
               key: index + 1,
-              name: ok.name,
+              name: <div className="tour_admin_table_name">{ok.name}</div>,
               author: <span>{ok.tacgia}</span>,
               anh: <Image src={ok.anh} />,
               status: (

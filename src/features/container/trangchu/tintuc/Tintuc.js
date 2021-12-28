@@ -27,7 +27,7 @@ function Tintuc() {
         <div className="row g-3 mb-4">
           {tintuc.map((ok) => (
             <div className="col-sm-4" key={ok.id}>
-              <Link to={`/detail-new/${ok.id}`}>
+              <Link to={`/detailnews/${ok.id}`}>
                 <div className="news-box">
                   <img src={ok.anh} alt={ok.tenanh} />
                   <div className="news_desc">

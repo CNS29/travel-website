@@ -69,7 +69,7 @@ export default function Listtintuc() {
                     <Link to={`/detailnews/${ok.id}`}>
                       <div className="news_wrapper">
                         <div className="img-new">
-                          <img src={ok.anh} alt="" />
+                          <img src={ok.anh} />
                         </div>
                         <div className="title-desc p-3 mt-2">
                           <h4>{ok.name}</h4>

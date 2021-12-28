@@ -59,17 +59,8 @@ function Tintucdetail() {
                   </div>
                   <div className="content">
                     {renderHTML(ok.content)}
-                    <div className="text-right">
-                      <p>
-                        <i>
-                          <strong>Tác giả: {ok.tacgia}</strong>
-                        </i>
-                      </p>
-                      <p>
-                        <i>
-                          <strong>Ngày đăng: {formatdate(ok.createdAt)}</strong>
-                        </i>
-                      </p>
+                    <div className="text-end my-4">
+                      <strong>Tác giả:&nbsp;{ok.tacgia}</strong>
                     </div>
                   </div>
                 </div>

@@ -70,6 +70,12 @@ h6 {
 }
 
 /* Common */
+.tour_admin_table_name {
+  width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 #admin th.ant-table-cell {
   background-color: unset;
 }

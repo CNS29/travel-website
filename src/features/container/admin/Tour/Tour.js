@@ -135,9 +135,7 @@ function Tour() {
             pagination={{ pageSize: 4 }}
             dataSource={tour.map((ok, index) => ({
               key: index + 1,
-              name: (
-                <Link to={`${match.url}/chitiettour/${ok.id}`}>{ok.name}</Link>
-              ),
+              name: <div className="tour_admin_table_name">{ok.name}</div>,
               anh: <Image src={ok.avatar} alt={ok.tenanh} />,
               status: (
                 <div className="action">
@@ -178,8 +176,14 @@ function Tour() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <button className="ms-2 btn btn-danger">Xóa</button>
+                    <button className="mx-2 btn btn-danger">Xóa</button>
                   </Popconfirm>
+                  <Link
+                    to={`${match.url}/chitiettour/${ok.id}`}
+                    className="btn btn-info text-light"
+                  >
+                    Xem chi tiết
+                  </Link>
                 </div>
               ),
               khuyenmai: (

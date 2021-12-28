@@ -278,7 +278,7 @@ function Themtintuc(props) {
       </div>
       <div className="content">
         <form action="" method="post" onSubmit={onSubmit}>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Tiêu đề bài viết</label>
             <input
               type="text"
@@ -290,9 +290,9 @@ function Themtintuc(props) {
               aria-describedby="helpId"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <div>
-              <label htmlFor="">Thêm poster</label>
+              <label htmlFor="">Thêm hình</label>
               <input
                 accept="image/*"
                 id="icon-button-file"
@@ -332,7 +332,7 @@ function Themtintuc(props) {
               <span>{tenanh}</span>
             </div>
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Tóm tắt</label>
             <textarea
               name="tomtat"
@@ -343,7 +343,7 @@ function Themtintuc(props) {
               rows="4"
             ></textarea>
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Nội dung</label>
             <JoditEditor
               value={content}
@@ -351,7 +351,7 @@ function Themtintuc(props) {
               onChange={(e) => setcontent(e)}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Tác giả</label>
             <input
               type="text"
@@ -363,43 +363,7 @@ function Themtintuc(props) {
               aria-describedby="helpId"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="">Facebook</label>
-            <input
-              type="text"
-              name="facebook"
-              value={facebook}
-              onChange={onChange}
-              className="form-control w-50"
-              placeholder=""
-              aria-describedby="helpId"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="">Twitch</label>
-            <input
-              type="text"
-              name="twitch"
-              value={twitch}
-              onChange={onChange}
-              className="form-control w-50"
-              placeholder=""
-              aria-describedby="helpId"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="">Instagram</label>
-            <input
-              type="text"
-              name="instagram"
-              value={instagram}
-              onChange={onChange}
-              className="form-control w-50"
-              placeholder=""
-              aria-describedby="helpId"
-            />
-          </div>
-          <div className="text-center mtb">
+          <div className="text-center mt-5">
             {load ? (
               <div className="spinner-border text-success" role="status">
                 <span className="sr-only">Loading...</span>
@@ -408,7 +372,7 @@ function Themtintuc(props) {
               ""
             )}
             <Button type="submit" variant="contained" color="primary">
-              {id ? "Sửa tin tức" : "Thêm tin"}
+              {id ? "Cập nhật bài đăng" : "Thêm bài đăng"}
             </Button>
           </div>
         </form>

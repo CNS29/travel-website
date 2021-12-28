@@ -54,10 +54,6 @@ function Diadiem() {
   };
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Địa điểm</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themdiadiem`}>

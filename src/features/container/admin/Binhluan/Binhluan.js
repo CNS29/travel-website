@@ -73,10 +73,6 @@ function Binhluan() {
   };
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Bình luận</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         {loading ? (
           <div className="spin">
@@ -88,7 +84,7 @@ function Binhluan() {
             dataSource={binhluan.map((ok, index) => ({
               key: index + 1,
               user: <span>{ok.User.name}</span>,
-              tour: <span>{ok.Tour.name}</span>,
+              tour: <p className="tour_admin_table_name">{ok.Tour.name}</p>,
               binhluan: <p className="admin_limit">{ok.binhluan}</p>,
               star: (
                 <div className="size-binhluan">

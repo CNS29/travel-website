@@ -9,7 +9,6 @@ function Chitietquocgia() {
   const tour = useSelector((state) =>
     state.tour.tour.data.find((x) => x.id === +id)
   );
-  const loading = useSelector((state) => state.tour.loading);
   const backPage = () => {
     history.goBack();
   };
@@ -24,19 +23,19 @@ function Chitietquocgia() {
       </div>
       <div className="content">
         <div className="ct">
-          {loading ? (
+          {!tour ? (
             <div className="spin">
               <Spin className="mt-5" />
             </div>
           ) : (
             <div>
-              <p>
+              <p className="mb-4">
                 <strong>Tên tour:&emsp;</strong>
                 <b>
                   <i>{tour.name}</i>
                 </b>
               </p>
-              <p>
+              <p className="mb-4">
                 <strong>Avatar</strong>
                 <br />
                 <img
@@ -46,49 +45,47 @@ function Chitietquocgia() {
                   alt={tour.tenanh}
                 />
               </p>
-              <strong>Trailer:</strong>
-              <div className="text-center">
-                <div className="embed-responsive embed-responsive-16by9">
-                  {renderHTML(tour.trailer)}
-                </div>
-              </div>
-              <p>
+              <p className="mb-4">
                 <strong>Giá tiền người lớn:&emsp;</strong>
                 <b>
                   <i>{tour.gianguoilon}</i>
                 </b>
               </p>
-              <p>
+              <p className="mb-4">
                 <strong> Giá trẻ em:&emsp;</strong>
                 <b>
                   <i>{tour.giatreem}</i>
                 </b>
               </p>
-              <p>
+              <p className="mb-4">
                 <strong>Giá em bé:&emsp;</strong>
                 <b>
                   <i>{tour.giaembe}</i>
                 </b>
               </p>
-              <strong>Banner:</strong>
+              <strong className="mb-4">Banner:</strong>
               {tour.Anhs.map((oki) => (
-                <div className="text-center mb-3">
+                <div className="text-center mb-3" key={oki}>
                   <img src={oki.link} width="500px" height="400px" alt="" />
                 </div>
               ))}
-              <strong>Bản đồ:&emsp; </strong>
+              <strong className="mb-4">Bản đồ:&emsp; </strong>
               <div
                 id="map-container-google-1"
                 className="z-depth-1-half map-container mb-3"
               >
                 {renderHTML(tour.bando)}
               </div>
-              <strong className="text-justify">
-                Chi tiết tour:&emsp; {renderHTML(tour.chitiettour)}
-              </strong>
-              <strong className="text-justify">
-                Lưu ý:&emsp; {renderHTML(tour.luuy)}
-              </strong>
+              <div className="mt-4">
+                <strong className="text-justify ">
+                  Chi tiết tour:&emsp; {renderHTML(tour.chitiettour)}
+                </strong>
+              </div>
+              <div className="mt-4">
+                <strong className="text-justify ">
+                  Lưu ý:&emsp; {renderHTML(tour.luuy)}
+                </strong>
+              </div>
             </div>
           )}
         </div>
@@ -96,7 +93,5 @@ function Chitietquocgia() {
     </div>
   );
 }
-
-Chitietquocgia.propTypes = {};
 
 export default Chitietquocgia;

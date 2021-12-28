@@ -57,11 +57,19 @@ function Taikhoan() {
     setIsModalVisible(true);
   };
   const roles = useSelector((state) => state.role.role.data);
+
   const handleOk = async () => {
-    let inforadmin = await taikhoanApi.getOneAdmin(userId).then((ok) => {
-      return ok;
-    });
-    await userroleApi.edituserrole({ idsua: inforadmin.id, roleId: value });
+    const inforData = await taikhoanApi.getOneAdmin(userId).then((ok) => ok);
+    if (inforData) {
+      await userroleApi.edituserrole({ idsua: inforData.id, roleId: value });
+    } else {
+      console.log(userId);
+      await userroleApi.postuserrole({
+        userId: userId,
+        roleId: value,
+      });
+    }
+    // await userroleApi.edituserrole({ idsua: inforadmin.id, roleId: value });
     actionResult();
     setIsModalVisible(false);
   };
@@ -71,16 +79,6 @@ function Taikhoan() {
   const onChangeRadio = (e) => {
     setValue(e.target.value);
   };
-  // const handleStatus = (e, id) => {
-  //   if (e === 1) {
-  //     dispatch(updateuser({ status: 0, id: id }));
-  //   } else {
-  //     dispatch(updateuser({ status: 1, id: id }));
-  //   }
-  //   setTimeout(() => {
-  //     actionResult();
-  //   }, 500);
-  // };
   const chuhoa = (e) => {
     return e.charAt(0).toUpperCase() + e.slice(1);
   };
@@ -109,28 +107,7 @@ function Taikhoan() {
               ) : (
                 <Image src={noImg} alt="avatar" />
               ),
-              // status: (
-              //   <div className="action">
-              //     {ok.status === 1 ? (
-              //       <span
-              //         onClick={() => {
-              //           handleStatus(ok.status, ok.id);
-              //         }}
-              //       >
-              //         <span className="badge rounded-pill bg-success">
-              //           Kích hoạt
-              //         </span>
-              //       </span>
-              //     ) : (
-              //       <span onClick={() => handleStatus(ok.status, ok.id)}>
-              //         <span className="badge rounded-pill bg-secondary">
-              //           Ẩn
-              //         </span>
-              //       </span>
-              //     )}
-              //   </div>
-              // ),
-              role:
+              role: ok.Roles[0] ? (
                 ok.Roles[0].name === "admin" ? (
                   <span className="text-danger">
                     <b>{chuhoa(ok.Roles[0].name)}</b>
@@ -139,7 +116,12 @@ function Taikhoan() {
                   <span className="text-success">
                     <b>{chuhoa(ok.Roles[0].name)}</b>
                   </span>
-                ),
+                )
+              ) : (
+                <span className="text-success">
+                  <b>Chưa có quyền</b>
+                </span>
+              ),
               action: (
                 <div className="action">
                   <Popconfirm

@@ -319,6 +319,8 @@ function Tour() {
     tong = Number(nguoilon) + Number(treem) + Number(embe);
   }
 
+  console.log(tour_ngay);
+
   return (
     <div className="margin_header">
       <div id="detail-tour">

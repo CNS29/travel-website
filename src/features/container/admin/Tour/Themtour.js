@@ -59,7 +59,6 @@ function Themtour() {
     gianguoilon: "",
     giatreem: "",
     giaembe: "",
-    trailer: "",
     bando: "",
     status: 0,
   });
@@ -79,7 +78,6 @@ function Themtour() {
     giaembe,
     gianguoilon,
     giatreem,
-    trailer,
     img,
     previewVisible,
     previewImage,
@@ -127,7 +125,6 @@ function Themtour() {
           gianguoilon: tour.gianguoilon,
           giatreem: tour.giatreem,
           giaembe: tour.giaembe,
-          trailer: tour.trailer,
           bando: tour.bando,
           status: tour.status,
           dichvuId: suadichvu,
@@ -182,7 +179,6 @@ function Themtour() {
       gianguoilon === "" ||
       giatreem === "" ||
       giaembe === "" ||
-      trailer.trim() === "" ||
       chitiettour.trim() === "" ||
       luuy.trim() === "" ||
       bando.trim() === "" ||
@@ -268,7 +264,6 @@ function Themtour() {
               gianguoilon,
               giatreem,
               giaembe,
-              trailer,
               bando,
               Anhs,
               TourDiadiems,
@@ -293,7 +288,6 @@ function Themtour() {
               gianguoilon,
               giatreem,
               giaembe,
-              trailer,
               bando,
               Anhs,
               TourDiadiems,
@@ -355,7 +349,6 @@ function Themtour() {
             gianguoilon,
             giatreem,
             giaembe,
-            trailer,
             bando,
             Anhs,
             TourDiadiems,
@@ -386,6 +379,7 @@ function Themtour() {
   const dichvudata = [];
 
   for (let i = 0; i < dichvu.length; i++) {
+    if (dichvu[i].status === 0) continue;
     dichvudata.push(<Option key={dichvu[i].id}>{dichvu[i].name}</Option>);
   }
   const [luuy, setluuy] = useState("");
@@ -449,6 +443,7 @@ function Themtour() {
       d_d.push({
         id: quocgias[i].Diadiems[j].id,
         name: quocgias[i].Diadiems[j].name,
+        status: quocgias[i].Diadiems[j].status,
       });
     }
     var qg = quocgias[i].id;
@@ -456,12 +451,13 @@ function Themtour() {
   }
   const quocgiaData = tenquocgia;
   const [laydiadiem, setlaydiadiem] = useState([]);
+
   const handlequocgiaChange = (value) => {
     setlaydiadiem(dd.find((x) => x.qg === +value).diadiem);
   };
   var selectdiadiem = [];
-
   for (let i = 0; i < laydiadiem.length; i++) {
+    if (laydiadiem[i].status === 0) continue;
     selectdiadiem.push(
       <Option key={laydiadiem[i].id}>{laydiadiem[i].name}</Option>
     );
@@ -476,6 +472,16 @@ function Themtour() {
   const onchangeNgaydi = (e) => {
     setngaydiId(e);
   };
+
+  const newNgay = [];
+  if (ngaydi) {
+    for (let i = 0; i < ngaydi.length; i++) {
+      if (ngaydi[i].status === 1) {
+        newNgay.push(ngaydi[i]);
+      }
+    }
+  }
+
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -491,6 +497,7 @@ function Themtour() {
   const backPage = () => {
     history.goBack();
   };
+
   return (
     <div id="admin">
       <button onClick={backPage} className="btn btn-primary">
@@ -502,7 +509,7 @@ function Themtour() {
       </div>
       <div className="content">
         <form action="" method="post" onSubmit={onSubmit}>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Tên tour</label>
             <input
               type="text"
@@ -514,7 +521,7 @@ function Themtour() {
               aria-describedby="helpId"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Vị trí</label>
             <br />
             <Select className="w-50" value={vitri} onChange={hangdlevitri}>
@@ -523,8 +530,8 @@ function Themtour() {
             </Select>
             <br />
           </div>
-          <div className="form-group">
-            <label htmlFor="">Thêm poster</label>
+          <div className="form-group mb-4">
+            <label htmlFor="">Thêm hình</label>
             <div>
               <input
                 accept="image/*"
@@ -564,7 +571,7 @@ function Themtour() {
               <br />
             </div>
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Banner</label>
             <Upload
               listType="picture-card"
@@ -583,7 +590,7 @@ function Themtour() {
               <img alt="example" style={{ width: "100%" }} src={previewImage} />
             </Modal>
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Ngày đi</label>
             <span className="text-warning" onClick={showModal}>
               <IconButton
@@ -612,7 +619,7 @@ function Themtour() {
                       <Spin className="mt-5" />
                     </div>
                   ) : (
-                    ngaydi.map((ok) => (
+                    newNgay.map((ok) => (
                       <Row key={ok.id}>
                         <Col span={8}>
                           <Checkbox value={ok.id}>{ok.ngay}</Checkbox>
@@ -642,7 +649,7 @@ function Themtour() {
               </Select>
             )}
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Loại tour</label>
             <br />
             {loadloaitour ? (
@@ -661,7 +668,7 @@ function Themtour() {
               </Select>
             )}
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Quốc gia</label>
             <br />
             <Select
@@ -687,7 +694,7 @@ function Themtour() {
               {selectdiadiem}
             </Select>
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Số lượng</label>
             <input
               type="number"
@@ -700,7 +707,7 @@ function Themtour() {
               aria-describedby="helpId"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Số ngày đi</label>
             <input
               type="number"
@@ -713,19 +720,7 @@ function Themtour() {
               aria-describedby="helpId"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="">Trailer</label>
-            <input
-              type="text"
-              name="trailer"
-              value={trailer}
-              onChange={onChange}
-              className="form-control w-50"
-              placeholder=""
-              aria-describedby="helpId"
-            />
-          </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Giá người lớn</label>
             <input
               type="number"
@@ -738,7 +733,7 @@ function Themtour() {
               aria-describedby="helpId"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Giá trẻ em</label>
             <input
               type="number"
@@ -751,7 +746,7 @@ function Themtour() {
               aria-describedby="helpId"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Giá em bé</label>
             <input
               type="number"
@@ -764,7 +759,7 @@ function Themtour() {
               aria-describedby="helpId"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mb-4">
             <label htmlFor="">Bản đồ</label>
             <input
               type="text"
@@ -776,7 +771,7 @@ function Themtour() {
               aria-describedby="helpId"
             />
           </div>
-          <div className="form-group ">
+          <div className="form-group mb-4 ">
             <label htmlFor="">Chi tiết tour</label>
             <JoditEditor
               value={chitiettour}
@@ -784,7 +779,7 @@ function Themtour() {
               onChange={(e) => setchitiettour(e)}
             />
           </div>
-          <div className="form-group ">
+          <div className="form-group mb-4 ">
             <label htmlFor="">Lưu ý</label>
             <JoditEditor
               value={luuy}
@@ -793,7 +788,7 @@ function Themtour() {
             />
           </div>
 
-          <div className="text-center mtb">
+          <div className="text-center mt-4">
             {load ? (
               <div className="spinner-border text-success" role="status">
                 <span className="sr-only">Loading...</span>

@@ -1,9 +1,9 @@
-.history__content {
+/* .history__content {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
+} */
 
 .history_item {
   display: flex;
@@ -16,9 +16,16 @@
   margin-bottom: 15px;
 }
 
+.text_limmit_home {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .history_item img {
-  max-width: 200px;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   border-radius: 10px;
 }
 

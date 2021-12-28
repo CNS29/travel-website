@@ -55,10 +55,6 @@ function Dichvu() {
 
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Dịch vụ</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themdichvu`}>

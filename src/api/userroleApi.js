@@ -30,7 +30,6 @@ class UserroleApi {
   };
   edituserrole = (params) => {
     const url = `/userrole/${params.idsua}`;
-    console.log(params);
     return axiosClient
       .patch(url, params)
       .then((data) => {

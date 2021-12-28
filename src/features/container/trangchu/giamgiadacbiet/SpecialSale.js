@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 import { validDate } from "../../../common/commonHandle";
 
-import { Rate } from "antd";
 import "./specialsale.css";
 
 function SpecialSale() {
@@ -16,6 +15,7 @@ function SpecialSale() {
       if (
         tours[i].Khuyenmais.length !== 0 &&
         tours[i].Khuyenmais[0].khuyenmai === 30 &&
+        tours[i].Khuyenmais[0].status === 1 &&
         validDate(tours[i].Ngaydis)
       ) {
         setTour(tours[i]);
@@ -23,7 +23,7 @@ function SpecialSale() {
       }
     }
   }, [tours]);
-  console.log(tour);
+
   return (
     <div id="special-sale">
       <div className="container-fluid">
@@ -33,8 +33,8 @@ function SpecialSale() {
             <div className="special-sale_item_desc">
               <h4>Giảm giá {tour.Khuyenmais[0].khuyenmai}%</h4>
               <span>Nhân dịp {tour.Khuyenmais[0].name}</span>
-              <h2>{tour.name}</h2>
-              <Link to={`/tour/${tour.id}`} className="btn btn-primary">
+              <h2 className="special_item_title">{tour.name}</h2>
+              <Link to={`/tours/${tour.id}`} className="btn btn-primary">
                 Xem ngay
               </Link>
             </div>

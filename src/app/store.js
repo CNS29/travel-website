@@ -22,7 +22,6 @@ import userroleReducer from "../features/container/admin/header/userroleSlice";
 import inforReducer from "../features/container/login/inforSlice";
 import chitieuReducer from "../features/container/admin/Doanhthu/chitieuSlice";
 import thanhtoanReducer from "../features/container/detailtour/tour/thanhtoanSlice";
-import hoadoncanhanReducer from "../features/container/admin/Hoadoncanhan/hoadoncanhanSlice";
 import thongbaoReducer from "../features/container/admin/Kiemduyet/thongbaoSlice";
 const rootReducer = {
   tintuc: tintucReducer,
@@ -48,7 +47,6 @@ const rootReducer = {
   chitieu: chitieuReducer,
   khuyenmai: khuyenmaiReducer,
   thanhtoan: thanhtoanReducer,
-  hoadoncanhan: hoadoncanhanReducer,
   thongbao: thongbaoReducer,
 };
 

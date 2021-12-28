@@ -28,12 +28,12 @@ export default function Thongtin() {
               defaultActiveKey={+id === 0 ? "1" : "2"}
               tabPosition={tabPosition}
             >
-              <TabPane tab="Tour đã đặt" key="1">
+              <TabPane tab="Lịch sử đặt tour" key="1">
                 <Lichsu />
               </TabPane>
-              <TabPane tab="Duyệt tour" key="2">
+              {/* <TabPane tab="Duyệt tour" key="2">
                 <Duyettour />
-              </TabPane>
+              </TabPane> */}
             </Tabs>
           )}
         </div>

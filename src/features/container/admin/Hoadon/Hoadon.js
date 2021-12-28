@@ -61,10 +61,6 @@ function Hoadon() {
   };
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Hoá đơn</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         {loading ? (
           <div className="spin">
@@ -76,7 +72,7 @@ function Hoadon() {
             dataSource={hoadons.map((ok, index) => ({
               key: index + 1,
               name: <span>{ok.User.name}</span>,
-              tour: <span>{ok.Tour.name}</span>,
+              tour: <p className="tour_admin_table_name">{ok.Tour.name}</p>,
               soluong: (
                 <Tooltip title={title(ok.nguoilon, ok.treem, ok.embe)}>
                   <Button>Chi tiết</Button>

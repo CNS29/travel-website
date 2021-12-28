@@ -307,13 +307,15 @@ export default function Listtour() {
                                       <div>
                                         Giá:&nbsp;&nbsp;
                                         {ok.Khuyenmais[0] &&
+                                          ok.Khuyenmais[0].status === 1 &&
                                           tinhkhuyenmai(
                                             ok.gianguoilon,
                                             ok.Khuyenmais[0].khuyenmai
                                           )}
                                         <span
                                           className={`${
-                                            ok.Khuyenmais[0]
+                                            ok.Khuyenmais[0] &&
+                                            ok.Khuyenmais[0].status === 1
                                               ? "money-discount"
                                               : ""
                                           }`}
@@ -347,7 +349,8 @@ export default function Listtour() {
                                   </div>
                                 </div>
                               </div>
-                              {ok.Khuyenmais[0] ? (
+                              {ok.Khuyenmais[0] &&
+                              ok.Khuyenmais[0].status === 1 ? (
                                 <div className="tag-discount">
                                   Giảm giá
                                   <div className="anotation">
@@ -374,23 +377,27 @@ export default function Listtour() {
                                   <div className="title-tour">{ok.name}</div>
                                   <div className="mt-2">
                                     <div className="money d-flex justify-content-between mt-3">
-                                      Giá:
                                       <div>
+                                        Giá:&nbsp;&nbsp;
                                         {ok.Khuyenmais[0] &&
+                                          ok.Khuyenmais[0].status === 1 &&
                                           tinhkhuyenmai(
                                             ok.gianguoilon,
                                             ok.Khuyenmais[0].khuyenmai
                                           )}
+                                        <span
+                                          className={`${
+                                            ok.Khuyenmais[0] &&
+                                            ok.Khuyenmais[0].status === 1
+                                              ? "money-discount"
+                                              : ""
+                                          }`}
+                                        >
+                                          {ok.gianguoilon.toLocaleString()}
+                                          VNĐ
+                                        </span>
                                       </div>
-                                      <div
-                                        className={`${
-                                          ok.Khuyenmais[0]
-                                            ? "money-discount"
-                                            : ""
-                                        }`}
-                                      >
-                                        {ok.gianguoilon.toLocaleString()} VNĐ
-                                      </div>
+                                      <p>{ok.thoigian} Ngày</p>
                                     </div>
                                   </div>
                                   <div className="d-flex justify-content-between mt-3">

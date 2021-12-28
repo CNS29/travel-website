@@ -55,7 +55,7 @@ function Touryeuthich() {
                       </div>
                     )}
                   <div className="content_tour">
-                    <h1 className="container_tour_title">{item.name}</h1>
+                    <h1 className="container_tour_title ">{item.name}</h1>
                     <Rate value={item.rating} disabled />
                     <p className="my-2">
                       Giá: {item.gianguoilon.toLocaleString()}

@@ -61,10 +61,6 @@ function Lienhe() {
 
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Liên hệ</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themlienhe`}>

@@ -14,8 +14,12 @@ import "./ngaydi.css";
 function Ngaydi() {
   const columns = [
     {
-      title: "thời gian",
+      title: "Thời gian",
       dataIndex: "ngay",
+    },
+    {
+      title: "Tình trạng",
+      dataIndex: "status",
     },
     {
       title: "Action",
@@ -53,12 +57,19 @@ function Ngaydi() {
       actionResult();
     }, 500);
   };
+
+  const handleStatus = (e, id) => {
+    if (e === 1) {
+      dispatch(updatengaydi({ status: 0, idsua: id }));
+    } else {
+      dispatch(updatengaydi({ status: 1, idsua: id }));
+    }
+    setTimeout(() => {
+      actionResult();
+    }, 500);
+  };
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Ngày đi</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         <div className="add">
           <Space direction="vertical">
@@ -78,6 +89,27 @@ function Ngaydi() {
             dataSource={ngaydi.map((ok, index) => ({
               key: index + 1,
               ngay: <span>{ok.ngay}</span>,
+              status: (
+                <div className="action">
+                  {ok.status === 1 ? (
+                    <span
+                      onClick={() => {
+                        handleStatus(ok.status, ok.id);
+                      }}
+                    >
+                      <span className="badge rounded-pill bg-success">
+                        Kích hoạt
+                      </span>
+                    </span>
+                  ) : (
+                    <span onClick={() => handleStatus(ok.status, ok.id)}>
+                      <span className="badge rounded-pill bg-secondary">
+                        Ẩn
+                      </span>
+                    </span>
+                  )}
+                </div>
+              ),
               action: (
                 <div className="action">
                   <Popconfirm

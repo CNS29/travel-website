@@ -160,19 +160,19 @@ export default function Doanhthu() {
         </thead>
         <tbody>
           <tr>
-            <th>Chỉ tiêu ngày</th>
+            <th>Lợi nhuận ngày</th>
             <td>{ThuNhapHomNay.toLocaleString()}&nbsp;VNĐ</td>
             <td>{chitieungay.toLocaleString()}&nbsp;VNĐ</td>
             <td>{(ThuNhapHomNay - chitieungay).toLocaleString()}&nbsp;VNĐ</td>
           </tr>
           <tr>
-            <th>Chỉ tiêu tháng</th>
+            <th>Lợi nhuận tháng</th>
             <td>{ThuNhapThang.toLocaleString()}&nbsp;VNĐ</td>
             <td>{chitieuthang.toLocaleString()}&nbsp;VNĐ</td>
             <td>{(ThuNhapThang - chitieuthang).toLocaleString()}&nbsp;VNĐ</td>
           </tr>
           <tr>
-            <th>Chỉ tiêu năm</th>
+            <th>Lợi nhuận năm</th>
             <td>{ThuNhapNam.toLocaleString()}&nbsp;VNĐ</td>
             <td>{chitieunam.toLocaleString()}&nbsp;VNĐ</td>
             <td>{(ThuNhapNam - chitieunam).toLocaleString()}&nbsp;VNĐ</td>

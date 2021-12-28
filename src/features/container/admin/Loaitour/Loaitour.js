@@ -38,10 +38,6 @@ function Loaitour(props) {
 
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Loại tour</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themloaitour`}>
