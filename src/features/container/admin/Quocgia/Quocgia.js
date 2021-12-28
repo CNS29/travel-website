@@ -1,5 +1,5 @@
-import React from "react";
-import { Popconfirm, Spin, Table } from "antd";
+import React, { useState } from "react";
+import { Popconfirm, Spin, Table, Modal } from "antd";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,18 +11,15 @@ function Quocgia() {
 
   const columns = [
     {
-      title: "tên quốc gia",
+      title: "Tên quốc gia",
       dataIndex: "name",
     },
     {
-      title: "Action",
+      title: "Hành động",
       dataIndex: "action",
     },
   ];
 
-  function onChange(pagination, filters, sorter, extra) {
-    console.log("params", pagination, filters, sorter, extra);
-  }
   const quocgia = useSelector((state) => state.quocgia.quocgia.data);
   const loading = useSelector((state) => state.quocgia.loading);
   const dispatch = useDispatch();
@@ -33,10 +30,6 @@ function Quocgia() {
     await dispatch(diadiemData());
   };
 
-  function onChange(pagination, filters, sorter, extra) {
-    console.log("params", pagination, filters, sorter, extra);
-  }
-
   const history = useHistory();
   const hangdleDelete = (e) => {
     dispatch(removequocgia(e));
@@ -45,15 +38,29 @@ function Quocgia() {
       actionDiadiem();
     }, 500);
   };
+
   const hangdleEdit = (id) => {
     history.push(`${match.url}/suaquocgia/${id}`);
   };
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [detailNation, setDetailNation] = useState();
+
+  const showModal = (data) => {
+    setIsModalVisible(true);
+    setDetailNation(data);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Quốc gia</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themquocgia`}>
@@ -71,11 +78,7 @@ function Quocgia() {
             columns={columns}
             dataSource={quocgia.map((ok, index) => ({
               key: index + 1,
-              name: (
-                <Link to={`${match.url}/chitietquocgia/${ok.id}`}>
-                  {ok.name}
-                </Link>
-              ),
+              name: <p>{ok.name}</p>,
               action: (
                 <div className="action">
                   <Popconfirm
@@ -83,11 +86,8 @@ function Quocgia() {
                     onConfirm={() => {
                       hangdleEdit(ok.id);
                     }}
-                    icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
-                    <Link>
-                      <button className="btn btn-warning">Sửa</button>
-                    </Link>
+                    <button className="btn btn-warning text-light">Sửa</button>
                   </Popconfirm>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -96,17 +96,36 @@ function Quocgia() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <Link>
-                      <button className="ms-2 btn btn-danger">Xóa</button>
-                    </Link>
+                    <button className="mx-3 btn btn-danger">Xóa</button>
                   </Popconfirm>
+                  <button
+                    onClick={() => showModal(ok)}
+                    className="btn btn-info text-light"
+                  >
+                    Xem chi tiết
+                  </button>
                 </div>
               ),
             }))}
-            onChange={onChange}
           />
         )}
       </div>
+      <Modal
+        title={detailNation ? detailNation.name : ""}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        {detailNation && (
+          <div>
+            <p>Các địa điểm: </p>
+            {detailNation.Diadiems.map((oki) => (
+              <p>+&emsp;{oki.name}</p>
+            ))}
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }

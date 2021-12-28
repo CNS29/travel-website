@@ -30,27 +30,21 @@ function Chitiettintuc() {
             </div>
           ) : (
             <div>
-              <p>
-                Tên tin tức:&emsp;{" "}
-                <b>
-                  <i>{tintuc.name}</i>
-                </b>
-              </p>
               <p>Ảnh bìa:</p>
-              <div className="text-center">
+              <div className="text-center mb-5">
                 <img width="500px" height="400px" src={tintuc.anh} alt="" />
               </div>
               <p>
-                Tên tác giả:&emsp;{" "}
-                <b>
-                  <i>{tintuc.tacgia}</i>
-                </b>
+                <p>
+                  Tên tin tức:&emsp;
+                  <i>{tintuc.name}</i>
+                </p>
+                Tên tác giả:&emsp;
+                <i>{tintuc.tacgia}</i>
               </p>
               <p>
-                Ngày đăng:&emsp;{" "}
-                <b>
-                  <i>{tintuc.createdAt}</i>
-                </b>
+                Ngày đăng:&emsp;
+                <i>{tintuc.createdAt}</i>
               </p>
               <p>
                 Facebook:&emsp; <i>{tintuc.facebook}</i>
@@ -76,7 +70,5 @@ function Chitiettintuc() {
     </div>
   );
 }
-
-Chitiettintuc.propTypes = {};
 
 export default Chitiettintuc;

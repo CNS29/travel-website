@@ -70,6 +70,25 @@ h6 {
 }
 
 /* Common */
+#admin th.ant-table-cell {
+  background-color: unset;
+}
+
+.ant-image img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+.ant-table-tbody > tr > td {
+  font-size: 1.4rem;
+}
+
+.ant-table-thead > tr > th {
+  font-size: 1.4rem !important;
+}
+.spin {
+  text-align: center;
+}
 .admin_limit {
   max-width: 300px;
   overflow: hidden;

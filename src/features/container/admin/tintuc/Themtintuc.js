@@ -41,32 +41,35 @@ function Themtintuc(props) {
   });
   const [content, setcontent] = useState("");
 
-  useEffect(async () => {
-    actionResult();
-    actiontintuctag();
-    if (id) {
-      const suatag = await axios.get(`http://localhost:666/tintuctag/${id}`);
-      const ss = suatag.data;
-      const sua_tag = [];
-      for (let i = 0; i < ss.data.length; i++) {
-        sua_tag.push(`${ss.data[i].tagId}`);
+  useEffect(() => {
+    async function getData() {
+      actionResult();
+      actiontintuctag();
+      if (id) {
+        const suatag = await axios.get(`http://localhost:666/tintuctag/${id}`);
+        const ss = suatag.data;
+        const sua_tag = [];
+        for (let i = 0; i < ss.data.length; i++) {
+          sua_tag.push(`${ss.data[i].tagId}`);
+        }
+        setState({
+          status: tintuc.status,
+          name: tintuc.name,
+          tenanh: tintuc.tenanh,
+          facebook: tintuc.facebook,
+          twitch: tintuc.twitch,
+          anh: tintuc.anh,
+          instagram: tintuc.instagram,
+          tomtat: tintuc.tomtat,
+          tacgia: tintuc.tacgia,
+          tag_id: sua_tag,
+          checktag: sua_tag,
+          idsua: id,
+        });
+        setcontent(tintuc.content);
       }
-      setState({
-        status: tintuc.status,
-        name: tintuc.name,
-        tenanh: tintuc.tenanh,
-        facebook: tintuc.facebook,
-        twitch: tintuc.twitch,
-        anh: tintuc.anh,
-        instagram: tintuc.instagram,
-        tomtat: tintuc.tomtat,
-        tacgia: tintuc.tacgia,
-        tag_id: sua_tag,
-        checktag: sua_tag,
-        idsua: id,
-      });
-      setcontent(tintuc.content);
     }
+    getData();
   }, []);
   const equar = (a, b) => {
     if (a.length !== b.length) {
@@ -97,6 +100,7 @@ function Themtintuc(props) {
     tag_id,
     checktag,
   } = state;
+
   const onSubmit = async (e) => {
     e.preventDefault();
     setState({ ...state, load: true });
@@ -122,7 +126,7 @@ function Themtintuc(props) {
           if (checktag === tag_id) {
             dispatch(
               updatetintuc({
-                idsua,
+                id: idsua,
                 name,
                 content,
                 tomtat,
@@ -137,16 +141,16 @@ function Themtintuc(props) {
             );
           } else {
             await tintuctagApi.deletetintuctag(idsua);
-            var data = [];
+            const data = [];
             for (let i = 0; i < tag_id.length; i++) {
-              var tintucId = idsua;
-              var tagId = tag_id[i];
+              let tintucId = idsua;
+              let tagId = tag_id[i];
               data.push({ tintucId, tagId });
             }
             await tintuctagApi.posttintuctag(data);
             await dispatch(
               updatetintuc({
-                idsua,
+                id: idsua,
                 name,
                 content,
                 tomtat,
@@ -164,7 +168,7 @@ function Themtintuc(props) {
           if (equar(checktag, tag_id)) {
             dispatch(
               updatetintuc({
-                idsua,
+                id: idsua,
                 name,
                 content,
                 tomtat,
@@ -179,16 +183,16 @@ function Themtintuc(props) {
             );
           } else {
             await tintuctagApi.deletetintuctag(idsua);
-            var data = [];
+            const data = [];
             for (let i = 0; i < tag_id.length; i++) {
-              var tintucId = idsua;
-              var tagId = tag_id[i];
+              let tintucId = idsua;
+              let tagId = tag_id[i];
               data.push({ tintucId, tagId });
             }
             await tintuctagApi.posttintuctag(data);
             await dispatch(
               updatetintuc({
-                idsua,
+                id: idsua,
                 name,
                 content,
                 tomtat,
@@ -209,7 +213,7 @@ function Themtintuc(props) {
           .ref("imagestintuc")
           .child(img.name)
           .getDownloadURL();
-        var TintucTags = [];
+        const TintucTags = [];
         for (let i = 0; i < tag_id.length; i++) {
           TintucTags.push({ tagId: tag_id[i] });
         }
@@ -226,7 +230,6 @@ function Themtintuc(props) {
             tacgia,
             anh,
             tenanh,
-            TintucTags,
           })
         );
       }
@@ -251,12 +254,6 @@ function Themtintuc(props) {
     setState({
       ...state,
       [e.target.name]: e.target.value,
-    });
-  };
-  const handleChange = (value) => {
-    setState({
-      ...state,
-      tag_id: value,
     });
   };
   const hangdelimage = (e) => {
@@ -401,18 +398,6 @@ function Themtintuc(props) {
               placeholder=""
               aria-describedby="helpId"
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="">Tags liên quan</label>
-            <Select
-              mode="tags"
-              value={tag_id}
-              onChange={handleChange}
-              className="w-50 ml-4"
-              placeholder="Tags Mode"
-            >
-              {data}
-            </Select>
           </div>
           <div className="text-center mtb">
             {load ? (

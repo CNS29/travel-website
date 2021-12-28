@@ -132,19 +132,13 @@ function Tour() {
         ) : (
           <Table
             columns={columns}
+            pagination={{ pageSize: 4 }}
             dataSource={tour.map((ok, index) => ({
               key: index + 1,
               name: (
                 <Link to={`${match.url}/chitiettour/${ok.id}`}>{ok.name}</Link>
               ),
-              anh: (
-                <Image
-                  src={ok.avatar}
-                  width="150px"
-                  height="200px"
-                  alt={ok.tenanh}
-                />
-              ),
+              anh: <Image src={ok.avatar} alt={ok.tenanh} />,
               status: (
                 <div className="action">
                   {ok.status === 1 ? (
@@ -153,11 +147,15 @@ function Tour() {
                         handleStatus(ok.status, ok.id);
                       }}
                     >
-                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
+                      <span className="badge rounded-pill bg-success">
+                        Kích hoạt
+                      </span>
                     </span>
                   ) : (
                     <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
+                      <span className="badge rounded-pill bg-secondary">
+                        Ẩn
+                      </span>
                     </span>
                   )}
                 </div>
@@ -171,7 +169,7 @@ function Tour() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
-                    <button className="btn btn-warning">Sửa</button>
+                    <button className="btn btn-warning text-light">Sửa</button>
                   </Popconfirm>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -232,7 +230,5 @@ function Tour() {
     </div>
   );
 }
-
-Tour.propTypes = {};
 
 export default Tour;

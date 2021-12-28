@@ -270,15 +270,6 @@ function ListMenu() {
                 <NavLink
                   activeClassName="active"
                   className="nav-link"
-                  to="/dichvu"
-                >
-                  Dịch vụ
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  activeClassName="active"
-                  className="nav-link"
                   to="/contact"
                 >
                   Liên hệ

@@ -38,9 +38,6 @@ export default function Doanhthu() {
   const actionChitiet = async () => await dispatch(chitieuData());
   const chitieu = useSelector((state) => state.chitieu.chitieu.data);
   useEffect(() => {
-    // Axios.get("https://free.currconv.com/api/v7/convert?q=USD_VND&compact=ultra&apiKey=6c24709f2cfc058a0499").then(data => {
-    //     setusd(data.data.USD_VND)
-    // })
     actionResult();
     if (chitieu) {
       setState({
@@ -124,9 +121,6 @@ export default function Doanhthu() {
       TongThuNhap += HoaDon[i].thanhtien;
     }
   }
-  // const LoiNhuan = (a, b) => {
-  //   return (b - a).toLocaleString();
-  // };
   const onChange = (e) => {
     setState({
       ...state,
@@ -137,167 +131,58 @@ export default function Doanhthu() {
   const { chitieunam, chitieuthang, chitieungay } = state;
   return (
     <div id="doanhthu">
-      <h4>Doanh thu công ty</h4>
-      <div className="row my-3">
-        <div className="col-md">
-          <div className="float-left mr-2">
-            <div className="icon">
-              <i className="fas fa-dollar-sign"></i>
-            </div>
-          </div>
-          <div className="monney">
-            <span>Tổng thu nhập</span>
-            <br />
+      <div className="row">
+        <div className="col-md-6">
+          <div className="doanhthu_item">
             <span>
-              <strong>$ {TongThuNhap ? thunhap.toLocaleString() : 0}</strong>
+              <strong>Tổng thu nhập</strong>
+              <p>$ {TongThuNhap ? thunhap.toLocaleString() : 0}</p>
             </span>
           </div>
         </div>
-        <div className="col-md">
-          <div className="float-left mr-2">
-            <div className="icon">
-              <i className="fas fa-users"></i>
-            </div>
-          </div>
-          <div className="monney">
-            <span>Tổng người dùng</span>
-            <br />
+        <div className="col-md-6">
+          <div className="doanhthu_item">
             <span>
-              <strong>{SoNguoiDung ? SoNguoiDung.length : 0}</strong>
+              <strong>Tổng người dùng</strong>
+              <p>{SoNguoiDung ? SoNguoiDung.length : 0}</p>
             </span>
           </div>
         </div>
       </div>
-      <h4 className="mt-4 mb-2">Chỉ tiêu</h4>
-      <div className="container text-center">
-        <div className="row pt-3 pb-2">
-          <div className="col-md-4">
-            <Progress
-              strokeColor={{
-                "0%": "#108ee9",
-                "100%": "#87d068",
-              }}
-              type="dashboard"
-              percent={100}
-            />
-
-            <div>
-              <h5>Chỉ tiêu ngày</h5>
-              <div className="hr"></div>
-              <div className="mt-2">
-                <span>
-                  Tổng thu:{" "}
-                  <span className="gold">
-                    {ThuNhapHomNay.toLocaleString()}{" "}
-                    <span className="text-danger bold">vnđ</span>
-                  </span>
-                </span>
-                <br />
-                <span>
-                  Chỉ tiêu:{" "}
-                  <span className="gold">
-                    {chitieungay.toLocaleString()}{" "}
-                    <span className="text-danger bold">vnđ</span>
-                  </span>
-                </span>
-                <br />
-                <span>
-                  Vượt chỉ tiêu:{" "}
-                  <span className="gold">
-                    {(ThuNhapHomNay - chitieungay).toLocaleString()}{" "}
-                    <span className="text-danger bold">vnđ</span>
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-4">
-            <Progress
-              strokeColor={{
-                "0%": "#108ee9",
-                "100%": "#87d068",
-              }}
-              type="dashboard"
-              percent={100}
-            />
-
-            <div>
-              <h5>Chỉ tiêu tháng</h5>
-              <div className="hr"></div>
-              <div className="mt-2">
-                <span>
-                  Tổng thu:{" "}
-                  <span className="gold">
-                    {ThuNhapThang.toLocaleString()}{" "}
-                    <span className="text-danger bold">vnđ</span>
-                  </span>
-                </span>
-                <br />
-                <span>
-                  Chỉ tiêu:{" "}
-                  <span className="gold">
-                    {chitieuthang.toLocaleString()}{" "}
-                    <span className="text-danger bold">vnđ</span>
-                  </span>
-                </span>
-                <br />
-                <span>
-                  Vượt chỉ tiêu:{" "}
-                  <span className="gold">
-                    {(ThuNhapThang - chitieuthang).toLocaleString()}{" "}
-                    <span className="text-danger bold">vnđ</span>
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <Progress
-              strokeColor={{
-                "0%": "#108ee9",
-                "100%": "#87d068",
-              }}
-              type="dashboard"
-              percent={100}
-            />
-
-            <div>
-              <h5>Chỉ tiêu năm</h5>
-              <div className="hr"></div>
-              <div className="mt-2">
-                <span>
-                  Tổng thu:{" "}
-                  <span className="gold">
-                    {ThuNhapNam.toLocaleString()}{" "}
-                    <span className="text-danger bold">vnđ</span>
-                  </span>
-                </span>
-                <br />
-                <span>
-                  Chỉ tiêu:{" "}
-                  <span className="gold">
-                    {chitieunam.toLocaleString()}{" "}
-                    <span className="text-danger bold">vnđ</span>
-                  </span>
-                </span>
-                <br />
-                <span>
-                  Vượt chỉ tiêu:{" "}
-                  <span className="gold">
-                    {(ThuNhapNam - chitieunam).toLocaleString()}{" "}
-                    <span className="text-danger bold">vnđ</span>
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <table class="table table-borderless table-hover">
+        <thead>
+          <tr>
+            <th>Chỉ tiêu</th>
+            <th>Tiền lợi nhuận</th>
+            <th>Chỉ tiêu đặt ra</th>
+            <th>Chỉ tiêu còn lại</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Chỉ tiêu ngày</th>
+            <td>{ThuNhapHomNay.toLocaleString()}&nbsp;VNĐ</td>
+            <td>{chitieungay.toLocaleString()}&nbsp;VNĐ</td>
+            <td>{(ThuNhapHomNay - chitieungay).toLocaleString()}&nbsp;VNĐ</td>
+          </tr>
+          <tr>
+            <th>Chỉ tiêu tháng</th>
+            <td>{ThuNhapThang.toLocaleString()}&nbsp;VNĐ</td>
+            <td>{chitieuthang.toLocaleString()}&nbsp;VNĐ</td>
+            <td>{(ThuNhapThang - chitieuthang).toLocaleString()}&nbsp;VNĐ</td>
+          </tr>
+          <tr>
+            <th>Chỉ tiêu năm</th>
+            <td>{ThuNhapNam.toLocaleString()}&nbsp;VNĐ</td>
+            <td>{chitieunam.toLocaleString()}&nbsp;VNĐ</td>
+            <td>{(ThuNhapNam - chitieunam).toLocaleString()}&nbsp;VNĐ</td>
+          </tr>
+        </tbody>
+      </table>
       <Button
         className="float-right mt-4"
         onClick={showModal}
-        variant="contained"
+        variant="outlined"
         color="primary"
       >
         Đặt chỉ tiêu
@@ -351,4 +236,37 @@ export default function Doanhthu() {
       </Modal>
     </div>
   );
+}
+
+{
+  /* <div className="row my-3">
+<div className="col-md">
+  <div className="float-left mr-2">
+    <div className="icon">
+      <i className="fas fa-dollar-sign"></i>
+    </div>
+  </div>
+  <div className="monney">
+    <span>Tổng thu nhập</span>
+    <br />
+    <span>
+      <strong>$ {TongThuNhap ? thunhap.toLocaleString() : 0}</strong>
+    </span>
+  </div>
+</div>
+<div className="col-md">
+  <div className="float-left mr-2">
+    <div className="icon">
+      <i className="fas fa-users"></i>
+    </div>
+  </div>
+  <div className="monney">
+    <span>Tổng người dùng</span>
+    <br />
+    <span>
+      <strong>{SoNguoiDung ? SoNguoiDung.length : 0}</strong>
+    </span>
+  </div>
+</div>
+</div> */
 }

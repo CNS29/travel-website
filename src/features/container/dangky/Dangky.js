@@ -33,30 +33,26 @@ function Dangky() {
       ) {
         message.error("Bạn chưa nhập đầy đủ thông tin!");
       } else {
-        if (password.length > 5) {
-          if (password === repassword) {
-            if (
-              (await taikhoanApi.checkEmail(email).then((data) => {
-                return data;
-              })) !== null
-            ) {
-              message.error("Email đã được sử dụng!");
-            } else {
-              var UserRoles = [{ roleId: 6 }];
-              taikhoanApi.postuser({
-                name,
-                status,
-                email,
-                password,
-                UserRoles,
-              });
-              history.push("/dangnhap");
-            }
+        if (password === repassword) {
+          if (
+            (await taikhoanApi.checkEmail(email).then((data) => {
+              return data;
+            })) !== null
+          ) {
+            message.error("Email đã được sử dụng!");
           } else {
-            message.error("Mật khẩu không trùng khớp!");
+            var UserRoles = [{ roleId: 6 }];
+            taikhoanApi.postuser({
+              name,
+              status,
+              email,
+              password,
+              UserRoles,
+            });
+            history.push("/dangnhap");
           }
         } else {
-          message.error("Mật khẩu phải ít nhất 6 ký tự!");
+          message.error("Mật khẩu không trùng khớp!");
         }
       }
     }

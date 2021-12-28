@@ -78,10 +78,6 @@ function Tintuc() {
 
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Quản lý tin tức</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         <div className="add">
           <Link to={`${match.url}/themtintuc`}>
@@ -99,13 +95,9 @@ function Tintuc() {
             columns={columns}
             dataSource={sort.map((ok, index) => ({
               key: index + 1,
-              name: (
-                <Link to={`${match.url}/chitiettintuc/${ok.id}`}>
-                  {ok.name}
-                </Link>
-              ),
+              name: ok.name,
               author: <span>{ok.tacgia}</span>,
-              anh: <Image src={ok.anh} width="200px" height="150px" alt="" />,
+              anh: <Image src={ok.anh} />,
               status: (
                 <div className="action">
                   {ok.status === 1 ? (
@@ -114,11 +106,13 @@ function Tintuc() {
                         handleStatus(ok.status, ok.id);
                       }}
                     >
-                      <i class="badge rounded-pill bg-success">Kích hoạt</i>
+                      <span class="badge rounded-pill bg-success">
+                        Kích hoạt
+                      </span>
                     </span>
                   ) : (
                     <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i class="badge rounded-pill bg-secondary">Ẩn</i>
+                      <span class="badge rounded-pill bg-secondary">Ẩn</span>
                     </span>
                   )}
                 </div>
@@ -130,9 +124,8 @@ function Tintuc() {
                     onConfirm={() => {
                       hangdleEdit(ok.id);
                     }}
-                    icon={<QuestionCircleOutlined style={{ color: "green" }} />}
                   >
-                    <button className="btn btn-warning">Sửa</button>
+                    <button className="btn btn-warning text-white">Sửa</button>
                   </Popconfirm>
                   <Popconfirm
                     title="Bạn có muốn xoá？"
@@ -141,8 +134,14 @@ function Tintuc() {
                     }}
                     icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <button className="ms-2 btn btn-danger">Xóa</button>
+                    <button className="mx-3 btn btn-danger">Xóa</button>
                   </Popconfirm>
+                  <Link
+                    to={`${match.url}/chitiettintuc/${ok.id}`}
+                    className="btn btn-info text-light"
+                  >
+                    Xem chi tiết
+                  </Link>
                 </div>
               ),
             }))}

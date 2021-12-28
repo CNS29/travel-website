@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Image, Modal, Popconfirm, Spin, Table } from "antd";
 import { Link, useRouteMatch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateuser, userData } from "./taikhoanSlice";
-import { QuestionCircleOutlined } from "@ant-design/icons";
-import mainAvatar from "../../../images/avatar.jpg";
+import { userData } from "./taikhoanSlice";
+import noImg from "../../../images/noImg.png";
 import { Radio } from "antd";
 import taikhoanApi from "../../../../api/taikhoanApi";
 import userroleApi from "../../../../api/userroleApi";
@@ -24,10 +23,10 @@ function Taikhoan() {
       title: "Email",
       dataIndex: "email",
     },
-    {
-      title: "Tình trạng",
-      dataIndex: "status",
-    },
+    // {
+    //   title: "Tình trạng",
+    //   dataIndex: "status",
+    // },
     {
       title: "Quyền",
       dataIndex: "role",
@@ -72,26 +71,22 @@ function Taikhoan() {
   const onChangeRadio = (e) => {
     setValue(e.target.value);
   };
-  const handleStatus = (e, id) => {
-    if (e === 1) {
-      dispatch(updateuser({ status: 0, id: id }));
-    } else {
-      dispatch(updateuser({ status: 1, id: id }));
-    }
-    setTimeout(() => {
-      actionResult();
-    }, 500);
-  };
+  // const handleStatus = (e, id) => {
+  //   if (e === 1) {
+  //     dispatch(updateuser({ status: 0, id: id }));
+  //   } else {
+  //     dispatch(updateuser({ status: 1, id: id }));
+  //   }
+  //   setTimeout(() => {
+  //     actionResult();
+  //   }, 500);
+  // };
   const chuhoa = (e) => {
     return e.charAt(0).toUpperCase() + e.slice(1);
   };
   const [value, setValue] = useState(6);
   return (
     <div id="admin">
-      <div className="heading">
-        <h4>Quản lý tài khoản</h4>
-        <div className="hr"></div>
-      </div>
       <div className="content">
         {loading ? (
           <div className="spin">
@@ -100,6 +95,7 @@ function Taikhoan() {
         ) : (
           <Table
             columns={columns}
+            pagination={{ pageSize: 4 }}
             dataSource={users.map((ok, index) => ({
               key: index + 1,
               name: (
@@ -109,27 +105,31 @@ function Taikhoan() {
               ),
               email: <span>{ok.email}</span>,
               avatar: ok.avatar ? (
-                <Image width="100px" height="120px" src={ok.avatar} alt="" />
+                <Image src={ok.avatar} alt={ok.tenanh} />
               ) : (
-                <Image width="100px" height="120px" src={mainAvatar} alt="" />
+                <Image src={noImg} alt="avatar" />
               ),
-              status: (
-                <div className="action">
-                  {ok.status === 1 ? (
-                    <span
-                      onClick={() => {
-                        handleStatus(ok.status, ok.id);
-                      }}
-                    >
-                      <i className="badge rounded-pill bg-success">Kích hoạt</i>
-                    </span>
-                  ) : (
-                    <span onClick={() => handleStatus(ok.status, ok.id)}>
-                      <i className="badge rounded-pill bg-secondary">Ẩn</i>
-                    </span>
-                  )}
-                </div>
-              ),
+              // status: (
+              //   <div className="action">
+              //     {ok.status === 1 ? (
+              //       <span
+              //         onClick={() => {
+              //           handleStatus(ok.status, ok.id);
+              //         }}
+              //       >
+              //         <span className="badge rounded-pill bg-success">
+              //           Kích hoạt
+              //         </span>
+              //       </span>
+              //     ) : (
+              //       <span onClick={() => handleStatus(ok.status, ok.id)}>
+              //         <span className="badge rounded-pill bg-secondary">
+              //           Ẩn
+              //         </span>
+              //       </span>
+              //     )}
+              //   </div>
+              // ),
               role:
                 ok.Roles[0].name === "admin" ? (
                   <span className="text-danger">
@@ -143,13 +143,14 @@ function Taikhoan() {
               action: (
                 <div className="action">
                   <Popconfirm
-                    title="Bạn muốn cấp quyền truy cập cho tài khoản này？"
+                    title="Phân quyền truy cập cho tài khoản"
                     onConfirm={() => {
                       hangdleUpdate(ok.id);
                     }}
-                    icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                   >
-                    <i className="fas fa-user-lock text-warning"></i>
+                    <button className="btn btn-warning text-light">
+                      Cấp quyền
+                    </button>
                   </Popconfirm>
                 </div>
               ),

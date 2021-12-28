@@ -1,34 +1,41 @@
 .ant-pagination-disabled {
-    border: none !important;
+  border: none !important;
 }
-.action{
-    font-size: 1.2rem;
+.action {
+  font-size: 1.2rem;
 }
-.action .fa-edit{
-    color: rgb(14, 177, 14);
+.action .fa-edit {
+  color: rgb(14, 177, 14);
 }
-.action .fa-trash-alt{
-    color: red;
+.action .fa-trash-alt {
+  color: red;
 }
-.action .fa-thumbs-down{
-    color: red;
+.action .fa-thumbs-down {
+  color: red;
 }
-#admin th.ant-table-cell{
-    font-weight: bold;
-    background-color: rgb(206, 199, 199);
+#admin th.ant-table-cell {
+  font-weight: bold;
+  background-color: rgb(206, 199, 199);
 }
-#admin .ct{
-    font-size: .9rem;
+#admin .ct {
+  font-size: 0.9rem;
+}
+#admin .content {
+  margin-top: 2rem;
+}
+#admin .mtb {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+#admin .add {
+  text-align: right;
+  margin-bottom: 1rem;
+}
 
-}
-#admin .content{
-    margin-top: 2rem;
-}
-#admin .mtb{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-#admin .add{
-    text-align: right;
-    margin-bottom: 1rem;
+.news_name {
+  max-width: 400px;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
